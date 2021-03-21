@@ -1,0 +1,38 @@
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                <input class="mx-2" type="checkbox" name="check" [(ngModel)]="mostrar" /> Click here</th>
+            <th>
+                <div class="p-1 " [class.fondo]="fondo ">Texto pendejo</div>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <div>{{ mostrar ? "Check activo" :"Sin check "}} </div>
+            </td>
+            <td>
+                <a [href]="myURL " target="_blank ">{{ myURL }}</a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button (click)="otroCambio() " class="btn btn-danger ">
+                Otro elemento
+              </button>
+                <input class="mx-2" type="text" name="prueba" [(ngModel)]="myText" /> {{ myText }}
+            </td>
+            <td>
+                <div>{{ mostrar ? "Hola !!!! " : "Adios !!! "}}</div>
+            </td>
+        </tr>
+        <tr>
+            <td><button class="btn btn-dark " (click)="cambiar() ">Perdido</button></td>
+            <td>
+                <div [hidden]="habilitar ">Magia!!!</div>
+            </td>
+        </tr>
+    </tbody>
+</table>
