@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row border p-3">
+
+        <div class="col-md-8">
+
+            <div class="row">
+                <div class="col-10 col-sm-10">
+                    <span class="text-info">Listado de Sitios</span>
+                </div>
+                <div class="col-2 col-sm-2">
+                    <button class="btn btn-outline-dark" (click)="cancelar()">Cancelar</button>
+                </div>
+            </div>
+
+            <ul class="list-group my-3">
+                <li class="list-group-item list-group-item-action" *ngFor="let objSitio of arregloSitios" (click)="seleccionar(objSitio)" [class.active]="objSitio==sitioSeleccionado">
+                    {{ objSitio.nombre_sitio }}
+                    <small>{{ objSitio.capacidad_sitio }}</small>
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-md-4 bg-light">
+            <form class="my-3">
+                <div class="mb-3">
+                    <label for="nombreSitio" class="form-label">Nombre Sitio</label>
+                    <input type="text" class="form-control" id="nombreSitio" name="nombreSitio" [(ngModel)]="sitioSeleccionado.nombre_sitio">
+                </div>
+                <div class="mb-3">
+                    <label for="capacidad" class="form-label">Capacidad</label>
+                    <input type="text" class="form-control" id="capacidad" name="capacidad" [(ngModel)]="sitioSeleccionado.capacidad_sitio">
+                </div>
+                <div class="mb-3">
+                    <label for="codSede" class="form-label">Código de la Sede</label>
+                    <input type="text" class="form-control" id="codSede" name="codSede" [(ngModel)]="sitioSeleccionado.codsede_sitio">
+                </div>
+                <!--
+                <button class="btn btn-outline-success" *ngIf="sitioSeleccionado.cod_sitio == 0">
+                    <span>Crear nuevo</span>
+                </button>
+                <button class="btn btn-outline-primary" *ngIf="sitioSeleccionado.cod_sitio != 0">
+                    <span>Actualizar</span>
+                </button>
+                -->
+                <button class="btn btn-outline-success" (click)="procesarSitio()">
+                    <span *ngIf="sitioSeleccionado.cod_sitio == 0">Crear nuevo</span>
+                    <span *ngIf="sitioSeleccionado.cod_sitio != 0">Actualizar</span>
+                </button>
+                <button class="btn btn-outline-danger mx-3" *ngIf="sitioSeleccionado.cod_sitio != 0" (click)="eliminarSitio()">
+                    <span>Eliminar</span>
+                </button>
+            </form>
+        </div>
+
+    </div>
+</div>

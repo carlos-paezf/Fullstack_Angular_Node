@@ -1,0 +1,9 @@
+.list-group-item.active {
+    background-color: rgb(240, 19, 30);
+    border-color: rgb(240, 19, 30);
+}
+
+.list-group-item.active:hover {
+    font-weight: bold;
+    background-color: rgb(240, 0, 12);
+}
