@@ -1,0 +1,92 @@
+<div class="p-4 p-md-5 m-4 text-white rounded bg-dark row mb-2">
+    <div class="col-md-8 py-4">
+        <h1 class="display-4 fst-italic">{{ titleDescription }}</h1>
+        <p class="lead my-3">{{ description }}</p>
+        <p>
+            <a href="#" class="btn btn-outline-success px-5 my-2 mx-1" (click)="openModalAdd(modalCategory)">Add category</a>
+            <a href="#" class="btn btn-outline-success px-5 my-2 mx-1" (click)="openModalAdd(modalPublication)">Add news</a>
+        </p>
+    </div>
+    <div class="col-md-4 px-0">
+        <img src="../../../assets/img/SantotoEscudo.png" alt="" style="width: 300px; height: 300px;">
+    </div>
+</div>
+
+
+<ng-template #modalPublication>
+    <!-- Modal -->
+    <div class="modal-header">
+        <h3 class="modal-title" id="modalAddPublicationLabel"> {{ modalTitle }} </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
+    <div class="modal-body modal-dialog-scrollable">
+        <form class="my-3">
+
+            <div class="mb-3">
+                <label for="publicationCategory" class="form-label">Category of the news: &nbsp;</label>
+                <select name="miSelect">
+                    <option [value]="category" *ngFor="let category of arrayCategories" [(ngModel)]="selectedPublication.category">{{ category.name }}</option>
+                </select>
+                <input type="text" class="form-control" id="publicationCategory" name="publicationCategory" [(ngModel)]="selectedPublication.category">
+            </div>
+            <div class="mb-3">
+                <label for="publicationTitle" class="form-label">Title of the news</label>
+                <input type="text" class="form-control" id="publicationTitle" name="publicationTitle" [(ngModel)]="selectedPublication.title">
+            </div>
+            <div class="mb-3">
+                <label for="publicationContent" class="form-label">Content:</label>
+                <input type="text" class="form-control" id="publicationContent" name="publicationContent" rows="3" [(ngModel)]="selectedPublication.content">
+            </div>
+
+            <div class="mb-3">
+                <label for="photo" class="form-label">Photo</label>
+                <div class="input-group-append">
+                    <input type="text" class="form-control" id="photo" name="photo" [(ngModel)]="selectedPublication.photo" accept="image/x-png, image/jpeg, image/gif">
+                    <button class="btn btn-outline-info" (click)="fileInput.click()">
+            <i class="fas fa-image">
+              <input type="file" style="display: none;" #fileInput (change)="selectPhoto($event)">
+            </i>
+          </button>
+                </div>
+            </div>
+
+            <div class="mb-3 text-center">
+                <img [src]="selectedPublication.photoBase64" alt="Without Photo" class="img-thumbnail" style="height: 80%; width: 80%;" onerror="this.src='../../assets/img/user.png'" />
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" (click)="modalRef.hide()">Close</button>
+                <button class="btn btn-outline-success" (click)="addPublication()">Add new Publication</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+
+<ng-template #modalCategory>
+    <!-- Modal -->
+    <div class="modal-header">
+        <h3 class="modal-title" id="modalAddCategoryLabel"> {{ modalTitle }} </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
+    <div class="container">
+        <form class="my-3">
+
+            <div class="mb-3">
+                <label for="categoryName" class="form-label">Name Category</label>
+                <input type="text" class="form-control" id="categoryName" name="categoryName" [(ngModel)]="selectedCategory.name">
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" (click)="modalRef.hide()">Close</button>
+                <button class="btn btn-outline-success" (click)="addCategory()">Add new category</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

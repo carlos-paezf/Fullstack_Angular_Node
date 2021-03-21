@@ -1,0 +1,95 @@
+<div class="container">
+    <div class="row mb-2">
+        <div class="col-md-6" *ngFor="let objPublication of arrayPublications" (click)="select(objPublication)" [class.active]="objPublication == selectedPublication">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary"> {{ objPublication.category }}</strong>
+                    <h3 class="mb-0">{{ objPublication.title }}</h3>
+                    <div class="mb-1 text-muted">{{ objPublication.date }}</div>
+                    <section>{{ objPublication.content }}</section>
+                    <div class="btn-group mt-3">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="openModalEditPublication(modalPublication, objPublication)">Edit</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" (click)="openModalDeletePublication(modalDelete, objPublication)">Delete</button>
+                    </div>
+                </div>
+                <div class="col-auto d-none d-lg-block py-4">
+                    <section class="p-1 text-center">
+                        <img [src]="objPublication.photoBase64" alt="Without Photo" class="card-img-top" style="height: 200px; width: 200px;" onerror="this.src='../../assets/img/user.png'" />
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #modalPublication>
+    <!-- Modal -->
+    <div class="modal-header">
+        <h3 class="modal-title" id="modalAddPublicationLabel"> {{ modalTitle }} </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+
+    <div class="modal-body modal-dialog-scrollable">
+        <form class="my-3">
+
+            <div class="mb-3">
+                <label for="publicationCategory" class="form-label">Category of the news</label>
+                <input type="text" class="form-control" id="publicationCategory" name="publicationCategory" [(ngModel)]="selectedPublication.category">
+            </div>
+            <div class="mb-3">
+                <label for="publicationTitle" class="form-label">Title of the news</label>
+                <input type="text" class="form-control" id="publicationTitle" name="publicationTitle" [(ngModel)]="selectedPublication.title">
+            </div>
+            <div class="mb-3">
+                <label for="publicationContent" class="form-label">Content:</label>
+                <input type="text" class="form-control" id="publicationContent" name="publicationContent" rows="3" [(ngModel)]="selectedPublication.content">
+            </div>
+
+            <div class="mb-3">
+                <label for="photo" class="form-label">Photo</label>
+                <div class="input-group-append">
+                    <input type="text" class="form-control" id="photo" name="photo" [(ngModel)]="selectedPublication.photo" accept="image/x-png, image/jpeg, image/gif">
+                    <button class="btn btn-outline-info" (click)="fileInput.click()">
+            <i class="fas fa-image">
+              <input type="file" style="display: none;" #fileInput (change)="selectPhoto($event)">
+            </i>
+          </button>
+                </div>
+            </div>
+
+            <div class="mb-3 text-center">
+                <img [src]="selectedPublication.photoBase64" alt="Without Photo" class="img-thumbnail" style="height: 80%; width: 80%;" onerror="this.src='../../assets/img/user.png'" />
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" (click)="modalRef.hide()">Close</button>
+                <button class="btn btn-outline-success" (click)="processPublication()">Edit Publication</button>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+
+<ng-template #modalDelete>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{ modalTitle }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        {{ modalText }} <br /><br />
+        <b>Title: </b>{{ modalTitlePublication }}<br />
+        <b>Content: </b>{{ modalContentPublication }}
+        <div class="m-3 text-center">
+            <img [src]="selectedPublication.photoBase64" alt="Without Photo" class="img-thumbnail" style="height: 50%; width: 50%;" onerror="this.src='../../assets/img/user.png'" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-light" (click)="cancelDelete()">Cancel</button>
+        <button type="button" class="btn btn-outline-danger" (click)="delete()">Delete</button>
+    </div>
+</ng-template>

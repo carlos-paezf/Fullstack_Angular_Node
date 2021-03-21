@@ -1,0 +1,11 @@
+h2:hover {
+    text-decoration: underline black;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: blue;
+}
