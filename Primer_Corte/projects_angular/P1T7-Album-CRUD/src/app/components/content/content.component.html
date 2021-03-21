@@ -1,0 +1,118 @@
+<section class="p-5 text-center">
+    <div class="card text-center">
+        <div class="card-header text-muted">
+            University Santo Tomas, Colombia, Tunja Section, Systems Engineer
+        </div>
+        <div class="card-body">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">{{ titleDescription }}</h1>
+                <p class="lead text-muted">{{ description }}</p>
+                <p>
+                    <a href="#" class="btn btn-outline-success px-5 my-2 mx-1" (click)="openModalAddPost(modalPost)">Add Post</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="album py-3 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+            <div class="col mb-3" *ngFor="let objPost of arrayPosts" (click)="select(objPost)" [class.active]="objPost == selectedPost">
+                <div class="card shadow-sm p-3">
+
+                    <section class="p-1 text-center">
+                        <img [src]="objPost.photoBase64" alt="Without Photo" class="card-img-top" style="height: 250px; width: 300px;" onerror="this.src='../../assets/img/user.png'" />
+                    </section>
+
+                    <div class="card-body">
+                        <h5 class="card-title"> {{ objPost.name }} </h5>
+                        <p class="card-text"> {{ objPost.description }} </p>
+                    </div>
+
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary" (click)="openModalEditPost(modalPost, objPost)">Edit</button>
+                            <button type="button" class="btn btn-sm btn-outline-secondary" (click)="openModalDeletePost(modalDelete, objPost)">Delete</button>
+                        </div>
+                        <small class="text-muted"> {{ objPost.publicationDate }}</small>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-template #modalPost>
+    <!-- Modal -->
+    <div class="modal-header">
+        <h3 class="modal-title" id="modalAddPostLabel"> {{ modalTitle }} </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="modal-body modal-dialog-scrollable">
+        <form class="my-3">
+
+            <div class="mb-3">
+                <label for="postName" class="form-label">Post Name</label>
+                <input type="text" class="form-control" id="postName" name="postName" [(ngModel)]="selectedPost.name">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description:</label>
+                <input type="text" class="form-control" id="description" name="description" rows="3" [(ngModel)]="selectedPost.description">
+            </div>
+
+            <div class="mb-3">
+                <label for="photo" class="form-label">Photo</label>
+                <div class="input-group-append">
+                    <input type="text" class="form-control" id="photo" name="photo" [(ngModel)]="selectedPost.photo" accept="image/x-png, image/jpeg, image/gif">
+                    <button class="btn btn-outline-info" (click)="fileInput.click()">
+                        <i class="fas fa-image">
+                          <input type="file" style="display: none;" #fileInput (change)="selectPhoto($event)">
+                      </i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="mb-3 text-center">
+                <img [src]="selectedPost.photoBase64" alt="Without Photo" class="img-thumbnail" style="height: 80%; width: 80%;" onerror="this.src='../../assets/img/user.png'" />
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" (click)="modalRef.hide()">Close</button>
+                <p *ngIf="selectedPost.cod==0 ; then create; else update"></p>
+                <ng-template #create>
+                    <button class="btn btn-outline-success" (click)="addPost()">Add new Post</button>
+                </ng-template>
+                <ng-template #update>
+                    <button class="btn btn-outline-info" (click)="editPost()">Update this Post</button>
+                </ng-template>
+            </div>
+        </form>
+    </div>
+</ng-template>
+
+<ng-template #modalDelete>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{ modalTitle }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    </div>
+    <div class="modal-body">
+        {{ modalText }} <br />
+        <b>{{ modalNamePost }}</b>
+        <div class="m-3 text-center">
+            <img [src]="selectedPost.photoBase64" alt="Without Photo" class="img-thumbnail" style="height: 100%; width: 100%;" onerror="this.src='../../assets/img/user.png'" />
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-light" (click)="cancelDelete()">Cancel</button>
+        <button type="button" class="btn btn-outline-danger" (click)="delete()">Delete</button>
+    </div>
+</ng-template>
