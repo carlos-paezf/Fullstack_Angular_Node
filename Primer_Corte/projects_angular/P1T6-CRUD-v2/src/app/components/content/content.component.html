@@ -1,0 +1,118 @@
+<div class="container">
+    <div class="row border p-3">
+
+        <div class="col-md-8">
+
+            <div class="row">
+                <div class="col-10 col-sm-10">
+                    <span>List of teachers</span>
+                </div>
+                <div class="col-2 col-sm-2">
+                    <button class="btn btn-outline-dark" (click)="cancel()">Cancel</button>
+                </div>
+            </div>
+            <table class="table mt-3 cursor">
+                <thead>
+                    <tr>
+                        <th style="width: 5%;">Cod</th>
+                        <th style="width: 25%;">Name</th>
+                        <th style="width: 30%;">Course</th>
+                        <th style="width: 15%;">Photo</th>
+                        <th style="width: 20%;">&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody class="table" *ngFor="let objTeacher of arrayTeachers" (click)="select(objTeacher)" [class.active]="objTeacher==selectedTeacher">
+                    <tr class="tr">
+                        <td>{{ objTeacher.cod }}</td>
+                        <td>{{ objTeacher.nameTeacher }}</td>
+                        <td>{{ objTeacher.course }}</td>
+                        <td><img [src]="objTeacher.photoBase64" alt="Without Photo" class="img-thumbnail" style="height: 50px; width: 50px;" onerror="this.src='../../assets/img/user.png'" /></td>
+                        <td>
+                            <i class="far fa-trash-alt trash_red" (click)="openModal(modalConfirmDelete, objTeacher)"></i> &nbsp;
+                            <i class="fas fa-recycle"></i>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-4 bg-light">
+            <form class="my-3">
+                <div class="mb-3">
+                    <label for="teacherName" class="form-label">Teacher Name</label>
+                    <input type="text" class="form-control" id="teacherName" name="teacherName" [(ngModel)]="selectedTeacher.nameTeacher">
+                </div>
+                <div class="mb-3">
+                    <label for="course" class="form-label">Course</label>
+                    <input type="text" class="form-control" id="course" name="course" [(ngModel)]="selectedTeacher.course">
+                </div>
+                <div class="mb-3">
+                    <label for="photo" class="form-label">Photo</label>
+                    <div class="input-group-append">
+                        <input type="text" class="form-control" id="photo" name="photo" [(ngModel)]="selectedTeacher.photo" accept="image/x-png, image/jpeg, image/gif">
+                        <button class="btn btn-outline-info" (click)="fileInput.click()">
+                        <i class="fas fa-image">
+                            <input type="file" style="display: none;" #fileInput (change)="selectPhoto($event)">
+                          </i>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="mb-3 ">
+                    <img [src]="selectedTeacher.photoBase64 " alt="Without Photo " class="img-thumbnail " style="height: 100%; width: 100%; " onerror="this.src='../../assets/img/user.png' " />
+                </div>
+                <!--
+                <button class="btn btn-outline-success " *ngIf="selectedTeacher.cod_sitio==0 ">
+                    <span>Crear nuevo</span>
+                </button>
+                <button class="btn btn-outline-primary " *ngIf="selectedTeacher.cod_sitio !=0 ">
+                    <span>Actualizar</span>
+                </button>
+                -->
+                <!--
+                <button class="btn btn-outline-success " (click)="processTeacher() ">
+                    <span *ngIf="selectedTeacher.cod==0 ">Crear nuevo</span>
+                    <span *ngIf="selectedTeacher.cod !=0 ">Actualizar</span>
+                </button>
+                -->
+
+                <!--
+                <button class="btn btn-outline-danger mx-3 " *ngIf="selectedTeacher.cod !=0 " (click)="deleteTeacher() ">
+                    <span>Eliminar</span>
+                </button>
+                -->
+
+                <p *ngIf="selectedTeacher.cod==0 ; then create; else update "></p>
+                <ng-template #create>
+                    <button class="btn btn-outline-success " (click)="processTeacher() ">Add new</button>
+                </ng-template>
+                <ng-template #update>
+                    <button class="btn btn-outline-info " (click)="processTeacher() ">Update Teacher</button>
+                </ng-template>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<!--
+    Plantilla para ventana modal
+-->
+<ng-template #modalConfirmDelete>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">{{ modalTitle }}</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        {{ modalText }} <br/>
+        <b>{{ modalContent }}</b>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-light" (click)="cancelDelete()">Cancel</button>
+        <button type="button" class="btn btn-outline-danger" (click)="delete()">Delete</button>
+    </div>
+</ng-template>
