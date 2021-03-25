@@ -105,6 +105,7 @@ export class ContentComponent implements OnInit {
   public openModalAddPost(template:TemplateRef<any>): void{
     this.modalRef = this.modalService.show(template, {class: 'modal-md'});
     this.modalTitle = 'Add a new Post';
+    this.selectedPost = new Post(0,'','','','','');
   }
 
   public selectPhoto(input:any):any{
