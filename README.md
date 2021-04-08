@@ -61,6 +61,9 @@ npm i --save bootstrap
 ```
 npm i --save @fortawesome/fontawesome-free
 ```
+```
+npm i --save ngx-pagination
+```
 Para revisar si las dependencias estan instaladas, revisar en el archivo package.json  
   
 Posteriormente, modificar lo siguiente en el archivo angular.json:
