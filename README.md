@@ -139,12 +139,15 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
 imports: [
     ...,
     ToastrModule.forRoot(),
     ModalModule.forRoot(),
     BrowserAnimationsModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
   ],
 ```
 
@@ -156,6 +159,19 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 // Dentro del constructor, añadir los parametros:
 constructor(public modalService:BsModalService, private toastr:ToastrService) {...}
 ```
+
+## Crear un nuevo pipe
+
+```
+ng g p <carpeta/nombre-pipe>
+```
+
+## Crear un nuevo modelo
+
+```
+ng g cl <carpeta/nombre-modelo>
+```
+
 
 
 
