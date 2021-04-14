@@ -12,7 +12,7 @@ import { ProfessorViewComponent } from './components/public/professor-view/profe
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'login', component: AccessComponent},
-  {path: 'Professor', component: ProfessorPrincipalComponent, children: [
+  {path: 'professor', component: ProfessorPrincipalComponent, children: [
     {path: 'create', component: ProfessorCreateComponent},
     {path: 'edit/:codProfessor', component: ProfessorEditComponent},
     {path: 'view', component: ProfessorViewComponent},
