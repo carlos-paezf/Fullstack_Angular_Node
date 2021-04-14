@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public welcome: string;
+  public description: string;
+  public location: string;
+
+  constructor() {
+    this.welcome = 'Angular & Node';
+    this.description = 'Facultad de Ingenieria de Sistemas';
+    this.location = 'Universidad Santo Tomas, Seccional Tunja'
+  }
 
   ngOnInit(): void {
   }

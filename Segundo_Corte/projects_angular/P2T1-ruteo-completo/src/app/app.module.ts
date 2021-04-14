@@ -14,10 +14,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TopMenuComponent } from './components/top-menu/top-menu.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/home/home.component';
-import { TeacherCreateComponent } from './components/public/teacher-create/teacher-create.component';
-import { TeacherEditComponent } from './components/public/teacher-edit/teacher-edit.component';
-import { TeacherViewComponent } from './components/public/teacher-view/teacher-view.component';
-import { TeacherPrincipalComponent } from './components/public/teacher-principal/teacher-principal.component';
+import { ProfessorCreateComponent } from './components/public/professor-create/professor-create.component';
+import { ProfessorEditComponent } from './components/public/professor-edit/professor-edit.component';
+import { ProfessorViewComponent } from './components/public/professor-view/professor-view.component';
+import { ProfessorPrincipalComponent } from './components/public/professor-principal/professor-principal.component';
 import { SideMenuComponent } from './components/private/side-menu/side-menu.component';
 import { PrincipalComponent } from './components/private/principal/principal.component';
 import { DetailComponent } from './components/private/detail/detail.component';
@@ -28,10 +28,10 @@ import { DetailComponent } from './components/private/detail/detail.component';
     TopMenuComponent,
     NotFoundComponent,
     HomeComponent,
-    TeacherCreateComponent,
-    TeacherEditComponent,
-    TeacherViewComponent,
-    TeacherPrincipalComponent,
+    ProfessorCreateComponent,
+    ProfessorEditComponent,
+    ProfessorViewComponent,
+    ProfessorPrincipalComponent,
     SideMenuComponent,
     PrincipalComponent,
     DetailComponent
