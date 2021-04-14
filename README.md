@@ -80,7 +80,19 @@ Posteriormente, modificar lo siguiente en el archivo angular.json:
     "./node_modules/bootstrap/dist/js/bootstrap.js"
 ]
 ```
-  
+Es posible que en caso de no funcionar los fragmentos de codigo copiados de Bootstrap, entonces es mejor ingresar los siguintes codigos:
+```json
+"styles": [
+    ...,
+    "node_modules/bootstrap/dist/css/bootstrap.min.css",
+    ...
+],
+"scripts": [
+    ...,
+    "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+    ...
+]
+```
 
 ## Cambiar el puerto del server
 
