@@ -21,6 +21,8 @@ import { ProfessorPrincipalComponent } from './components/public/professor-princ
 import { SideMenuComponent } from './components/private/side-menu/side-menu.component';
 import { PrincipalComponent } from './components/private/principal/principal.component';
 import { DetailComponent } from './components/private/detail/detail.component';
+import { ArrayPipe } from './pipes/array.pipe';
+import { ProfessorAdminComponent } from './components/public/professor-admin/professor-admin.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +34,11 @@ import { DetailComponent } from './components/private/detail/detail.component';
     ProfessorEditComponent,
     ProfessorViewComponent,
     ProfessorPrincipalComponent,
+    ProfessorAdminComponent,
     SideMenuComponent,
     PrincipalComponent,
-    DetailComponent
+    DetailComponent,
+    ArrayPipe
   ],
   imports: [
     BrowserModule,

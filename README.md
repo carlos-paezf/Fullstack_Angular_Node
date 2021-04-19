@@ -171,6 +171,11 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 // Dentro del constructor, añadir los parametros:
 constructor(public modalService:BsModalService, private toastr:ToastrService) {...}
 ```
+## Crear un nuevo modelo
+
+```
+ng g cl <carpeta/nombre-modelo>
+```
 
 ## Crear un nuevo pipe
 
@@ -178,12 +183,16 @@ constructor(public modalService:BsModalService, private toastr:ToastrService) {.
 ng g p <carpeta/nombre-pipe>
 ```
 
-## Crear un nuevo modelo
+Para implementar un pipe, se debe hacer iyección de dependencias en el constructor de la clase a implementar, y hacer uso de un provider en el component:
 
-```
-ng g cl <carpeta/nombre-modelo>
-```
+```typescript
+@Component({
+  ...,
+  providers: [ArrayPipe]
+})
 
+constructor(private order: ArrayPipe) {}
+```
 
 
 
