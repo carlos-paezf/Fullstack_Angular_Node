@@ -31,7 +31,7 @@ export class ArrayPipe implements PipeTransform {
       let result = 0;
 
       if (obj1 > obj2) { result = 1; }
-      else if (obj1 < obj2) { result - 1; }
+      else if (obj1 < obj2) { result = - 1; }
       return finalOrder === 'ASC' ? result : result * -1;
     }
   }

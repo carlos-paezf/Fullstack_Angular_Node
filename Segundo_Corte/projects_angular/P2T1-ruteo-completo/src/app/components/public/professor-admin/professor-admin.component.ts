@@ -18,7 +18,7 @@ export class ProfessorAdminComponent implements OnInit {
   public amountTotalPages: number;
 
   constructor(private order: ArrayPipe) {
-    const parameters = ['nameProfessor', 'aSC'];
+    const parameters = ['document', 'aSC'];
     //! this.arrayProfessors = ARRAY_PROFESSOR;
     this.arrayProfessors = this.order.transform(ARRAY_PROFESSOR, parameters);
     this.actualPage = 1;
