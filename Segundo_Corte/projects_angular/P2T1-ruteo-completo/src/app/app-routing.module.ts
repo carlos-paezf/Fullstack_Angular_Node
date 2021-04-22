@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccessComponent } from './components/access/access.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { DetailComponent } from './components/private/detail/detail.component';
+import { PrincipalComponent } from './components/private/principal/principal.component';
 import { ProfessorAdminComponent } from './components/public/professor-admin/professor-admin.component';
 import { ProfessorCreateComponent } from './components/public/professor-create/professor-create.component';
 import { ProfessorEditComponent } from './components/public/professor-edit/professor-edit.component';
@@ -18,6 +20,12 @@ const routes: Routes = [
     {path: 'view', component: ProfessorViewComponent},
     {path: 'admin', component: ProfessorAdminComponent},
     {path: '', redirectTo: '/home', pathMatch: 'full'},
+    {path: '**', component: NotFoundComponent}
+  ]},
+  {path: 'external', component: PrincipalComponent, children:[
+    {path: 'detail', component: DetailComponent},
+    {path: 'detail/:codProfessor', component: DetailComponent},
+    {path: '', redirectTo: 'detail', pathMatch: 'full'},
     {path: '**', component: NotFoundComponent}
   ]},
   {path: '', redirectTo: 'home', pathMatch: 'full'},

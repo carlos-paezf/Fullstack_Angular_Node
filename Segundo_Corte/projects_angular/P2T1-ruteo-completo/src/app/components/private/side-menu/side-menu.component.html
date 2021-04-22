@@ -1,1 +1,17 @@
-<p>side-menu works!</p>
+<nav id="side-menu">
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action list-group-item-dark" style="padding-bottom: 7px; padding-top: 7px" [routerLink]="['/external/detail', 0]" routerLinkActive="active">
+            Professors
+        </a>
+        <small>
+          <a *ngFor="let objProfessor of arrayProfessors; let i = index"
+            class="list-group-item list-group-item-action"
+            style="padding-bottom: 5px; padding-top: 5px"
+            [routerLink]="['/external/detail', objProfessor.cod]"
+            [class.list-group-item-info]="objProfessor == objSelectedProfessor"
+            (click)="selectProfessor(objProfessor)">
+              {{ i+1 }}. {{ objProfessor.nameProfessor }}
+          </a>
+        </small>
+    </div>
+</nav>
