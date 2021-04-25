@@ -4,31 +4,31 @@ import { Professor } from 'src/app/models/professor';
 import { ArrayPipe } from 'src/app/pipes/array.pipe';
 
 @Component({
-  selector: 'app-side-menu',
-  templateUrl: './side-menu.component.html',
-  styleUrls: ['./side-menu.component.css'],
+  selector: 'app-professors-side-menu',
+  templateUrl: './professors-side-menu.component.html',
+  styleUrls: ['./professors-side-menu.component.css'],
   providers: [ArrayPipe]
 })
-export class SideMenuComponent implements OnInit {
+export class ProfessorsSideMenuComponent implements OnInit {
 
   public arrayProfessors: Array<Professor>;
   public objSelectedProfessor: Professor;
 
   constructor(private order: ArrayPipe) {
     this.arrayProfessors = [];
-    this.objSelectedProfessor = new Professor(0,0,'','','');
+    this.objSelectedProfessor = new Professor(0, 0, '', '', '');
   }
 
   ngOnInit(): void {
-    const parameters = ['nameProfessor', 'ASC'];
-    this.arrayProfessors = this.order.transform(ARRAY_PROFESSOR, parameters);
+    const parametersP = ['nameProfessor', 'ASC'];
+    this.arrayProfessors = this.order.transform(ARRAY_PROFESSOR, parametersP);
   }
 
   public selectProfessor(obj: Professor): void {
     this.objSelectedProfessor = obj;
   }
 
-  public initialize():void{
+  public initializeProfessor(): void {
     const parameters = ['nameProfessor', 'ASC'];
     this.arrayProfessors = this.order.transform(ARRAY_PROFESSOR, parameters);
     this.objSelectedProfessor = new Professor(0, 0, '', '', '');

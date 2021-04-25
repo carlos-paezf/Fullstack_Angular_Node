@@ -1,0 +1,15 @@
+<div class="container">
+    <div *ngIf="amountProfessors > 0; then showData; else emptyMessage"></div>
+</div>
+
+<ng-template #showData>
+    Professors List
+</ng-template>
+
+<ng-template #emptyMessage>
+    <div class="row border justify-content-md-center">
+        <div class="alert alert-danger mt-3">
+            No hay profesores para esta universidad
+        </div>
+    </div>
+</ng-template>

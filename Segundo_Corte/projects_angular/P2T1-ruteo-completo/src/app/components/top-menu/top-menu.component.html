@@ -21,8 +21,15 @@
                 </div>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/external']" routerLinkActive="active">External</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                External
+              </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" [routerLink]="['/external/professor']">Professors</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" [routerLink]="['/external/university']">Universities</a>
+                </div>
             </li>
         </ul>
         <span class="navbar-text">

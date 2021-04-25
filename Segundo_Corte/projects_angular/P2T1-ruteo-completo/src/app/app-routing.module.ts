@@ -3,33 +3,48 @@ import { RouterModule, Routes } from '@angular/router';
 import { AccessComponent } from './components/access/access.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { DetailComponent } from './components/private/detail/detail.component';
 import { PrincipalComponent } from './components/private/principal/principal.component';
+import { ProfessorsDetailComponent } from './components/private/professors/professors-detail/professors-detail.component';
+import { ProfessorsPrincipalComponent } from './components/private/professors/professors-principal/professors-principal.component';
 import { ProfessorAdminComponent } from './components/public/professor-admin/professor-admin.component';
 import { ProfessorCreateComponent } from './components/public/professor-create/professor-create.component';
 import { ProfessorEditComponent } from './components/public/professor-edit/professor-edit.component';
 import { ProfessorPrincipalComponent } from './components/public/professor-principal/professor-principal.component';
 import { ProfessorViewComponent } from './components/public/professor-view/professor-view.component';
+import { UniversitiesDetailComponent } from './components/private/universities/universities-detail/universities-detail.component';
+import { UniversitiesPrincipalComponent } from './components/private/universities/universities-principal/universities-principal.component';
 
 const routes: Routes = [
-  {path: 'home', component: HomeComponent},
-  {path: 'login', component: AccessComponent},
-  {path: 'professor', component: ProfessorPrincipalComponent, children: [
-    {path: 'create', component: ProfessorCreateComponent},
-    {path: 'edit/:codProfessor', component: ProfessorEditComponent},
-    {path: 'view', component: ProfessorViewComponent},
-    {path: 'admin', component: ProfessorAdminComponent},
-    {path: '', redirectTo: '/home', pathMatch: 'full'},
-    {path: '**', component: NotFoundComponent}
+  { path: 'home', component: HomeComponent },
+  { path: 'login', component: AccessComponent },
+  { path: 'professor', component: ProfessorPrincipalComponent, children: [
+    { path: 'create', component: ProfessorCreateComponent },
+    { path: 'edit/:codProfessor', component: ProfessorEditComponent },
+    { path: 'view', component: ProfessorViewComponent },
+    { path: 'admin', component: ProfessorAdminComponent },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '**', component: NotFoundComponent }
   ]},
-  {path: 'external', component: PrincipalComponent, children:[
-    {path: 'detail', component: DetailComponent},
-    {path: 'detail/:codProfessor', component: DetailComponent},
-    {path: '', redirectTo: 'detail', pathMatch: 'full'},
-    {path: '**', component: NotFoundComponent}
+
+  { path: 'external', component: PrincipalComponent, children:[
+    { path: 'professor', component: ProfessorsPrincipalComponent, children: [
+      { path: 'professor-detail', component: ProfessorsDetailComponent },
+      { path: 'professor-detail/:codProfessor', component: ProfessorsDetailComponent },
+      { path: '', redirectTo: 'professor-detail', pathMatch: 'full' },
+      { path: '**', component: NotFoundComponent }
+    ]},
+    { path: 'university', component: UniversitiesPrincipalComponent, children: [
+      { path: 'university-detail', component: UniversitiesDetailComponent },
+      { path: 'university-detail/:codUniversity', component: UniversitiesDetailComponent },
+      { path: '', redirectTo: 'university-detail', pathMatch: 'full' },
+      { path: '**', component: NotFoundComponent }
+    ]},
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '**', component: NotFoundComponent }
   ]},
-  {path: '', redirectTo: 'home', pathMatch: 'full'},
-  {path: '**', component: NotFoundComponent}
+
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({

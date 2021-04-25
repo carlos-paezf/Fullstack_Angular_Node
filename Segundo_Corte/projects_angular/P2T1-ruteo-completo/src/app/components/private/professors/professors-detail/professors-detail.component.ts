@@ -6,11 +6,11 @@ import { ProfessorUniversity } from 'src/app/models/professor-university';
 import { University } from 'src/app/models/university';
 
 @Component({
-  selector: 'app-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  selector: 'app-professors-detail',
+  templateUrl: './professors-detail.component.html',
+  styleUrls: ['./professors-detail.component.css']
 })
-export class DetailComponent implements OnInit {
+export class ProfessorsDetailComponent implements OnInit {
 
   public arrayProfessorsUniversities: Array<ProfessorUniversity>;
   public amountUniversities: number;
@@ -20,19 +20,19 @@ export class DetailComponent implements OnInit {
   constructor(private route: ActivatedRoute) {
     this.arrayProfessorsUniversities = [];
     this.amountUniversities = 0;
-    this.selectedProfessorUniversity = new ProfessorUniversity(new Professor(0,0,'','',''), new University(0,'','',''));
+    this.selectedProfessorUniversity = new ProfessorUniversity(new Professor(0, 0, '', '', ''), new University(0, '', '', ''));
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((parameter: ParamMap)=>{
+    this.route.paramMap.subscribe((parameter: ParamMap) => {
       this.tmp = parameter.get('codProfessor');
       const professorCod = parseFloat(this.tmp);
-      if(Number.isNaN(professorCod) || professorCod==0){
+      if (Number.isNaN(professorCod) || professorCod == 0) {
         this.arrayProfessorsUniversities = ARRAY_PROFESSOR_UNIVERSITY;
         this.tmp = 0;
       } else {
         this.arrayProfessorsUniversities = ARRAY_PROFESSOR_UNIVERSITY.filter(
-          (professorUniversity)=> professorUniversity.codProfessor.cod === professorCod
+          (professorUniversity) => professorUniversity.codProfessor.cod === professorCod
         );
       }
       this.amountUniversities = this.arrayProfessorsUniversities.length;
@@ -40,7 +40,7 @@ export class DetailComponent implements OnInit {
     });
   }
 
-  public selectProfessorUniversity(obj: ProfessorUniversity): void{
+  public selectProfessorUniversity(obj: ProfessorUniversity): void {
     this.selectedProfessorUniversity = obj;
   }
 
