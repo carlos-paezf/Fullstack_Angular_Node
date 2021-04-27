@@ -18,7 +18,7 @@ export class ProfessorViewComponent implements OnInit {
   public amountTotalPages: number;
 
   constructor(private order: ArrayPipe) {
-    const parameters = ['nameProfessor', 'ASC'];
+    const parameters = ['cod', 'DESC'];
     //* this.arrayProfessors = ARRAY_PROFESSOR;
     this.arrayProfessors = this.order.transform(ARRAY_PROFESSOR, parameters);
     this.actualPage = 1;
