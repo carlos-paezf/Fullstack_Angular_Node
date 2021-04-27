@@ -6,11 +6,11 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PrincipalComponent } from './components/private/principal/principal.component';
 import { ProfessorsDetailComponent } from './components/private/professors/professors-detail/professors-detail.component';
 import { ProfessorsPrincipalComponent } from './components/private/professors/professors-principal/professors-principal.component';
-import { ProfessorAdminComponent } from './components/public/professor-admin/professor-admin.component';
-import { ProfessorCreateComponent } from './components/public/professor-create/professor-create.component';
-import { ProfessorEditComponent } from './components/public/professor-edit/professor-edit.component';
-import { ProfessorPrincipalComponent } from './components/public/professor-principal/professor-principal.component';
-import { ProfessorViewComponent } from './components/public/professor-view/professor-view.component';
+import { ProfessorAdminComponent } from './components/public/professor/professor-admin/professor-admin.component';
+import { ProfessorCreateComponent } from './components/public/professor/professor-create/professor-create.component';
+import { ProfessorEditComponent } from './components/public/professor/professor-edit/professor-edit.component';
+import { ProfessorPrincipalComponent } from './components/public/professor/professor-principal/professor-principal.component';
+import { ProfessorViewComponent } from './components/public/professor/professor-view/professor-view.component';
 import { UniversitiesDetailComponent } from './components/private/universities/universities-detail/universities-detail.component';
 import { UniversitiesPrincipalComponent } from './components/private/universities/universities-principal/universities-principal.component';
 

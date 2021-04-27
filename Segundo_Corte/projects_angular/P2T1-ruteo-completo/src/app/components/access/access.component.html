@@ -1,1 +1,46 @@
-<p>access works!</p>
+<section class="container">
+  <div class="row p-5">
+    <div class="col-sm-7 mx-auto">
+
+      <div class="card shadow-lg">
+        <div class="card-header">
+          <div class="d-flex align-items-center">
+            <h5 class="mx-auto w-100">Sign in to Angular</h5>
+            <h5><i class="fa fa-key text-success"></i></h5>
+          </div>
+        </div>
+
+
+        <div class="card-body">
+          <form>
+            <div class="form-group mx-auto">
+
+              <div class="col-sm-12 mb-3">
+                <small><span class="text-danger"></span></small>
+                <input class="form-control" type="text" name="email" id="email" placeholder="Email"
+                  style="border-radius: 2rem;" required />
+              </div>
+
+              <div class="col-sm-12 my-3">
+                <small><span class="text-danger"></span></small>
+                <input class="form-control" type="password" name="password" id="password" placeholder="Password"
+                  style="border-radius: 2rem;" required />
+              </div>
+
+            </div>
+
+            <div class="form-group mx-auto col-sm-10 my-3">
+              <div class="d-flex justify-content-between">
+                <a class="btn px-5 btn-dark" style="border-radius: 2rem;" [routerLink]="['/validate']">Sign In</a>
+                <a class="btn px-5 btn-outline-info" style="border-radius: 2rem;"
+                  [routerLink]="['/home']">Return to home</a>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

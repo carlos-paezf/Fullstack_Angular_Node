@@ -16,7 +16,7 @@ export class ProfessorsSideMenuComponent implements OnInit {
 
   constructor(private order: ArrayPipe) {
     this.arrayProfessors = [];
-    this.objSelectedProfessor = new Professor(0, 0, '', '', '');
+    this.objSelectedProfessor = new Professor(0, '', '', '', '');
   }
 
   ngOnInit(): void {
@@ -31,6 +31,6 @@ export class ProfessorsSideMenuComponent implements OnInit {
   public initializeProfessor(): void {
     const parameters = ['nameProfessor', 'ASC'];
     this.arrayProfessors = this.order.transform(ARRAY_PROFESSOR, parameters);
-    this.objSelectedProfessor = new Professor(0, 0, '', '', '');
+    this.objSelectedProfessor = new Professor(0, '', '', '', '');
   }
 }

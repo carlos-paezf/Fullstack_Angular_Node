@@ -17,7 +17,7 @@ export class ProfessorCreateComponent implements OnInit {
   public objProfessor: Professor;
 
   constructor(public modalService:BsModalService, private toastr:ToastrService, private router:Router) {
-    this.objProfessor = new Professor(0,0,'', '', '');
+    this.objProfessor = new Professor(0,'','', '', '');
   }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class ProfessorCreateComponent implements OnInit {
 
   public sendInfo(form:NgForm): boolean{
     this.createProfessor();
-    this.objProfessor = new Professor(0,0,'','','');
+    this.objProfessor = new Professor(0,'','','','');
     this.ToastrModal('The professor has been <b>created</b> successfully', 'Success', 1);
     this.router.navigate(['/professor/view']);
     return true;

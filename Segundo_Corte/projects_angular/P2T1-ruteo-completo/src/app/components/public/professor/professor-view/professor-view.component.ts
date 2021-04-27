@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Professor } from 'src/app/models/professor';
 import { ArrayPipe } from 'src/app/pipes/array.pipe';
-import { ARRAY_PROFESSOR } from '../../../mocks/professor-mock';
+import { ARRAY_PROFESSOR } from '../../../../mocks/professor-mock';
 
 @Component({
   selector: 'app-teacher-view',

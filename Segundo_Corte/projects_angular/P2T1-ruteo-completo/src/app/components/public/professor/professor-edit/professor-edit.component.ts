@@ -17,7 +17,7 @@ export class ProfessorEditComponent implements OnInit {
   public objProfessor: Professor;
 
   constructor(public modalService: BsModalService, private toastr: ToastrService, private route: ActivatedRoute) {
-    this.objProfessor = new Professor(0, 0, '', '', '');
+    this.objProfessor = new Professor(0, '', '', '', '');
   }
 
   //! Consumir Servicios de Backend

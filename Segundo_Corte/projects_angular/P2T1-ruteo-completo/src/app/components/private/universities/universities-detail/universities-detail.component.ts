@@ -20,7 +20,7 @@ export class UniversitiesDetailComponent implements OnInit {
   constructor(private route: ActivatedRoute) {
     this.arrayUniversitiesProfessors = [];
     this.amountProfessors = 0;
-    this.selectedUniversityProfessor = new ProfessorUniversity(new Professor(0, 0, '', '', ''), new University(0, '', '', ''));
+    this.selectedUniversityProfessor = new ProfessorUniversity(new Professor(0, '', '', '', ''), new University(0, '', '', ''));
   }
 
   ngOnInit(): void {
@@ -36,7 +36,7 @@ export class UniversitiesDetailComponent implements OnInit {
         );
       }
       this.amountProfessors = this.arrayUniversitiesProfessors.length;
-      this.selectedUniversityProfessor = new ProfessorUniversity(new Professor(0, 0, '', '', ''), new University(0, '', '', ''));
+      this.selectedUniversityProfessor = new ProfessorUniversity(new Professor(0, '', '', '', ''), new University(0, '', '', ''));
     });
   }
 
