@@ -4,23 +4,37 @@ import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { ARRAY_PROFESSOR } from 'src/app/mocks/professor-mock';
+import { ARRAY_PROFESSOR_UNIVERSITY } from 'src/app/mocks/professor-university-mock';
+import { ARRAY_UNIVERSITY } from 'src/app/mocks/university-mock';
 import { Professor } from 'src/app/models/professor';
+import { ProfessorUniversity } from 'src/app/models/professor-university';
+import { University } from 'src/app/models/university';
+import { ArrayPipe } from 'src/app/pipes/array.pipe';
 
 @Component({
   selector: 'app-teacher-create',
   templateUrl: './professor-create.component.html',
-  styleUrls: ['./professor-create.component.css']
+  styleUrls: ['./professor-create.component.css'],
+  providers: [ArrayPipe]
 })
 export class ProfessorCreateComponent implements OnInit {
 
   public tempBase64: any;
   public objProfessor: Professor;
+  public arrayUniversities: Array<University>;
+  public objUniversity: University;
+  public objProfessorUniversity: ProfessorUniversity;
 
-  constructor(public modalService:BsModalService, private toastr:ToastrService, private router:Router) {
+  constructor(private order:ArrayPipe, public modalService:BsModalService, private toastr:ToastrService, private router:Router) {
     this.objProfessor = new Professor(0,'','', '', '');
+    this.arrayUniversities = [];
+    this.objUniversity = new University(0,'','','');
+    this.objProfessorUniversity = new ProfessorUniversity(this.objProfessor, this.objUniversity);
   }
 
   ngOnInit(): void {
+    const parameters = ['nameUniversity', 'ASC'];
+    this.arrayUniversities = this.order.transform(ARRAY_UNIVERSITY, parameters);
   }
 
   public selectPhoto(input: any): any{
@@ -43,6 +57,7 @@ export class ProfessorCreateComponent implements OnInit {
   public sendInfo(form:NgForm): boolean{
     this.createProfessor();
     this.objProfessor = new Professor(0,'','','','');
+    this.objProfessorUniversity = new ProfessorUniversity(this.objProfessor, this.objUniversity);
     this.ToastrModal('The professor has been <b>created</b> successfully', 'Success', 1);
     this.router.navigate(['/professor/view']);
     return true;
@@ -51,8 +66,15 @@ export class ProfessorCreateComponent implements OnInit {
   public createProfessor(): void{
     this.objProfessor.cod = ARRAY_PROFESSOR.length+1;
     ARRAY_PROFESSOR.push(this.objProfessor);
+    ARRAY_PROFESSOR_UNIVERSITY.push(this.objProfessorUniversity);
+    this.router.navigate(['/professor/view']);
   }
 
+  public selectUniversity(cod:number, name:string, logo:string): void{
+    this.objUniversity.cod = cod;
+    this.objUniversity.nameUniversity = name;
+    this.objUniversity.logo = logo;
+  }
 
   public ToastrModal(message:string, title:string, opcion:number):void{
     const parameters = {
