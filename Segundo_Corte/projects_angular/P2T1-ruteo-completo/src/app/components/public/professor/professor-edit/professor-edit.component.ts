@@ -4,20 +4,32 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { ARRAY_PROFESSOR } from 'src/app/mocks/professor-mock';
+import { ARRAY_PROFESSOR_UNIVERSITY } from 'src/app/mocks/professor-university-mock';
+import { ARRAY_UNIVERSITY } from 'src/app/mocks/university-mock';
 import { Professor } from 'src/app/models/professor';
+import { ProfessorUniversity } from 'src/app/models/professor-university';
+import { University } from 'src/app/models/university';
+import { ArrayPipe } from 'src/app/pipes/array.pipe';
 
 @Component({
   selector: 'app-teacher-edit',
   templateUrl: './professor-edit.component.html',
-  styleUrls: ['./professor-edit.component.css']
+  styleUrls: ['./professor-edit.component.css'],
+  providers: [ArrayPipe]
 })
 export class ProfessorEditComponent implements OnInit {
 
   public tempBase64: any;
   public objProfessor: Professor;
+  public arrayUniversities: Array<University>;
+  public objUniversity: University;
+  public objProfessorUniversity: ProfessorUniversity;
 
-  constructor(public modalService: BsModalService, private toastr: ToastrService, private route: ActivatedRoute) {
+  constructor(private order:ArrayPipe, public modalService: BsModalService, private toastr: ToastrService, private route: ActivatedRoute) {
     this.objProfessor = new Professor(0, '', '', '', '');
+    this.arrayUniversities = [];
+    this.objUniversity = new University(0, '', '', '');
+    this.objProfessorUniversity = new ProfessorUniversity(this.objProfessor, this.objUniversity);
   }
 
   //! Consumir Servicios de Backend
@@ -29,6 +41,8 @@ export class ProfessorEditComponent implements OnInit {
       tempObject = ARRAY_PROFESSOR.find((professor)=>professor.cod===numericalData);
       this.objProfessor = tempObject;
     });
+    const parameters = ['nameUniversity', 'ASC'];
+    this.arrayUniversities = this.order.transform(ARRAY_UNIVERSITY, parameters);
     console.log('Hi, I´m Ferrer');
   }
 
@@ -50,10 +64,16 @@ export class ProfessorEditComponent implements OnInit {
   }
 
   public sendInfo(form: NgForm): boolean {
+    this.objProfessorUniversity = new ProfessorUniversity(this.objProfessor, this.objUniversity);
     this.ToastrModal('The professor has been <b>updated</b> successfully', 'Success', 1);
     return true;
   }
 
+  public selectUniversity(cod:number, name:string, logo:string): void{
+    this.objUniversity.cod = cod;
+    this.objUniversity.nameUniversity = name;
+    this.objUniversity.logo = logo;
+  }
 
   public ToastrModal(message: string, title: string, opcion: number): void {
     const parameters = {
