@@ -29,8 +29,8 @@
       <tr>
         <th style="width: 10%;">COD</th>
         <th style="width: 20%;">Document</th>
-        <th style="width: 50%;">Name</th>
-        <th style="width: 10%;">Photo</th>
+        <th style="width: 30%;">Name</th>
+        <th style="width: 30%;">Photo</th>
         <th style="width: 10%;">&nbsp;</th>
       </tr>
     </thead>
@@ -47,7 +47,7 @@
         <td>{{ objProf.nameProfessor }}</td>
         <td>{{ objProf.photo }}</td>
         <td>
-          <i class="far fa-trash-alt"></i> &nbsp;
+          <i class="far fa-trash-alt" (click)="openModal(modalDelete, objProf)"></i> &nbsp;
           <a [routerLink]="['/professor/edit', objProf.cod]">
             <i class="far fa-edit "></i>
           </a>
@@ -56,3 +56,27 @@
     </tbody>
   </table>
 </div>
+
+
+<!--Ventana Modal para confirmación de eliminación-->
+<ng-template #modalDelete>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ modalTitle }}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{ modalText }} <br /><br />
+    <b>Name: </b>{{ modalName }}<br />
+    <b>Document: </b>{{ modalDocument }}
+    <div class="m-3 text-center">
+      <img [src]="selectedProfessor.photoBase64" alt="Without Photo" class="img-thumbnail"
+        style="height: 50%; width: 50%;" onerror="this.src='../../assets/img/withoutPhoto.png'" />
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-light" (click)="cancelDelete()">Cancel</button>
+    <button type="button" class="btn btn-outline-danger" (click)="delete()">Delete</button>
+  </div>
+</ng-template>
