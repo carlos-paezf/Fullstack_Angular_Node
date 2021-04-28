@@ -13,15 +13,30 @@ import { ProfessorPrincipalComponent } from './components/public/professor/profe
 import { ProfessorViewComponent } from './components/public/professor/professor-view/professor-view.component';
 import { UniversitiesDetailComponent } from './components/private/universities/universities-detail/universities-detail.component';
 import { UniversitiesPrincipalComponent } from './components/private/universities/universities-principal/universities-principal.component';
+import { UniversityPrincipalComponent } from './components/public/university/university-principal/university-principal.component';
+import { UniversityCreateComponent } from './components/public/university/university-create/university-create.component';
+import { UniversityEditComponent } from './components/public/university/university-edit/university-edit.component';
+import { UniversityViewComponent } from './components/public/university/university-view/university-view.component';
+import { UniversityAdminComponent } from './components/public/university/university-admin/university-admin.component';
+import { ValidationComponent } from './components/access/validation/validation.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: AccessComponent },
+  { path: 'access', component: AccessComponent },
   { path: 'professor', component: ProfessorPrincipalComponent, children: [
     { path: 'create', component: ProfessorCreateComponent },
     { path: 'edit/:codProfessor', component: ProfessorEditComponent },
     { path: 'view', component: ProfessorViewComponent },
     { path: 'admin', component: ProfessorAdminComponent },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '**', component: NotFoundComponent }
+  ]},
+
+  { path: 'university', component: UniversityPrincipalComponent, children: [
+    { path: 'create', component: UniversityCreateComponent },
+    { path: 'edit/:codUniversity', component: UniversityEditComponent },
+    { path: 'view', component: UniversityViewComponent },
+    { path: 'admin', component: UniversityAdminComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent }
   ]},
@@ -42,6 +57,8 @@ const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent }
   ]},
+
+  { path: 'validate', component: ValidationComponent},
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }
