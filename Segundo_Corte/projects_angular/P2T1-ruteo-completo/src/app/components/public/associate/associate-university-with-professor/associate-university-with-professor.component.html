@@ -31,7 +31,7 @@
               <div class="form-group col-md-6">
                 <label for="inputState">Universities</label>
                 <select id="inputState" class="form-control">
-                  <option selected="selected" disabled>--- Select a University ---</option>
+                  <option selected="selected" disabled>--- Select an University ---</option>
                   <option *ngFor="let objUni of arrayUniversities" (click)="selectUniversity(objUni)">
                     {{ objUni.nameUniversity}}</option>
                 </select>

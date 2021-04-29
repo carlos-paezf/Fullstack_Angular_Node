@@ -146,13 +146,13 @@
             <select name="selectUni" id="selectUni" class="custom-select">
               <option class="danger" value="0" selected="selected" disabled>---- Select University ----</option>
               <option value="" class="list-group-item list-group-item-action"
-                *ngFor="let objUni of arrayUniversities; let i = index"
-                [class.list-group-item-info]="objUni == objUniversity"
-                (click)="selectUniversity(objUni.cod, objUni.nameUniversity, objUni.logo, objUni.logoBase64)">
-                {{ i+1 }}. {{ objUni.nameUniversity }}
-              </option>
-            </select>
-            <!--
+              *ngFor="let objUni of arrayUniversities; let i = index"
+              [class.list-group-item-info]="objUni == objUniversity"
+              (click)="selectUniversity(objUni.cod, objUni.nameUniversity, objUni.logo, objUni.logoBase64)">
+              {{ i+1 }}. {{ objUni.nameUniversity }}
+            </option>
+          </select>
+          <!--
             <div class="invalid-feedback" *ngIf="selectedUni.invalid">
               <span *ngIf="selectedUni?.errors?.required">The university is required</span>
             </div>

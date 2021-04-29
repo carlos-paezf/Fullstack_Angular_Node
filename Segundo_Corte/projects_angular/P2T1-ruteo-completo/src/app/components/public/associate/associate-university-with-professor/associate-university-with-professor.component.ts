@@ -22,31 +22,44 @@ export class AssociateUniversityWithProfessorComponent implements OnInit {
   public objProfessor: Professor;
   public objUniversity: University;
 
-  constructor(private toastr:ToastrService, private router:Router) {
+  constructor(private toastr: ToastrService, private router: Router) {
     this.arrayProfessorsUniversities = ARRAY_PROFESSOR_UNIVERSITY;
     this.arrayProfessors = ARRAY_PROFESSOR;
     this.arrayUniversities = ARRAY_UNIVERSITY;
-    this.objProfessorUniversity = new ProfessorUniversity(new Professor(0,'','','',''), new University(0,'','',''));
-    this.objProfessor = new Professor(0,'','','','');
-    this.objUniversity = new University(0,'','','');
+    this.objProfessorUniversity = new ProfessorUniversity(new Professor(0, '', '', '', ''), new University(0, '', '', ''));
+    this.objProfessor = new Professor(0, '', '', '', '');
+    this.objUniversity = new University(0, '', '', '');
   }
 
   ngOnInit(): void {
   }
 
-  public selectProfessor(objPro: Professor): void{
+  public selectProfessor(objPro: Professor): void {
     this.objProfessor = objPro;
   }
 
-  public selectUniversity(objUni: University): void{
+  public selectUniversity(objUni: University): void {
     this.objUniversity = objUni;
   }
 
-  public createAssociate(objPro:Professor, objUni:University): void{
+  public createAssociate(objPro: Professor, objUni: University): void {
     this.objProfessorUniversity = new ProfessorUniversity(objPro, objUni);
-    ARRAY_PROFESSOR_UNIVERSITY.push(this.objProfessorUniversity);
-    this.ToastrModal('Linkage has been <b>successful</b>', 'Success', 1);
-    this.router.navigate(['/external/professor/professor-detail']);
+    if (this.objProfessorUniversity.codProfessor.cod == 0 && this.objProfessorUniversity.codUniversity.cod == 0) {
+      this.ToastrModal('Los codigos no pueden ser nulos', 'ERROR', 4);
+    } else {
+      if (ARRAY_PROFESSOR_UNIVERSITY.find((profe) =>
+        profe.codProfessor.cod === this.objProfessorUniversity.codProfessor.cod &&
+        profe.codUniversity.cod === this.objProfessorUniversity.codUniversity.cod
+      )) {
+        this.ToastrModal('Universidad ya vinculada', 'Error', 3);
+      } else if (this.objProfessorUniversity.codProfessor.cod == 0 || this.objProfessorUniversity.codUniversity.cod == 0) {
+        this.ToastrModal('No se admiten datos sin seleccionar', 'Warning', 3);
+      } else {
+        ARRAY_PROFESSOR_UNIVERSITY.push(this.objProfessorUniversity);
+        this.ToastrModal('Linkage has been <b>successful</b>', 'Success', 1);
+        this.router.navigate(['/external/professor/professor-detail']);
+      }
+    }
   }
 
 
