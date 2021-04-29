@@ -47,7 +47,7 @@
         <td>{{ objProf.nameProfessor }}</td>
         <td>{{ objProf.photo }}</td>
         <td>
-          <i class="far fa-trash-alt" (click)="openModal(modalDelete, objProf)"></i> &nbsp;
+          <i class="far fa-trash-alt trash_red" (click)="openModal(modalDelete, objProf)"></i> &nbsp;
           <a [routerLink]="['/professor/edit', objProf.cod]">
             <i class="far fa-edit "></i>
           </a>

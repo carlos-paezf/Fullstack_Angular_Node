@@ -38,6 +38,8 @@ import { UniversitiesSideMenuComponent } from './components/private/universities
 import { UniversitiesDetailComponent } from './components/private/universities/universities-detail/universities-detail.component';
 import { UniversitiesPrincipalComponent } from './components/private/universities/universities-principal/universities-principal.component';
 import { ValidationComponent } from './components/access/validation/validation.component';
+import { AssociateUniversityWithProfessorComponent } from './components/public/associate/associate-university-with-professor/associate-university-with-professor.component';
+import { AssociateProfessorWithUniversityComponent } from './components/public/associate/associate-professor-with-university/associate-professor-with-university.component';
 
 
 @NgModule({
@@ -65,7 +67,9 @@ import { ValidationComponent } from './components/access/validation/validation.c
     UniversityEditComponent,
     UniversityPrincipalComponent,
     UniversityViewComponent,
-    ValidationComponent
+    ValidationComponent,
+    AssociateUniversityWithProfessorComponent,
+    AssociateProfessorWithUniversityComponent
   ],
   imports: [
     BrowserModule,

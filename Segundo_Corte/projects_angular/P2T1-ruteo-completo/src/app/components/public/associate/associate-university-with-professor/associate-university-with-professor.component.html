@@ -1,0 +1,53 @@
+<div>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a [routerLink]="['/home']">Home</a></li>
+      <li class="breadcrumb-item">
+        <a href="javascript:void(0)">Professors</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">Associate</li>
+    </ol>
+  </nav>
+</div>
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-12 pt-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="text-center">Associate an University with a Professor</h5>
+          <form>
+            <div class="row mt-2">
+
+              <div class="form-group col-md-6">
+                <label for="inputState">Professors</label>
+                <select id="inputState" class="form-control">
+                  <option selected="selected" disabled>--- Select a Professor ---</option>
+                  <option *ngFor="let objPro of arrayProfessors" (click)="selectProfessor(objPro)">
+                    {{ objPro.nameProfessor}}</option>
+                </select>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="inputState">Universities</label>
+                <select id="inputState" class="form-control">
+                  <option selected="selected" disabled>--- Select a University ---</option>
+                  <option *ngFor="let objUni of arrayUniversities" (click)="selectUniversity(objUni)">
+                    {{ objUni.nameUniversity}}</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group mx-auto col-sm-4">
+              <button class="btn btn-block btn-success" type="submit" style="border-radius: 0.25rem"
+                (click)="createAssociate(objProfessor, objUniversity)">
+                Associate
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

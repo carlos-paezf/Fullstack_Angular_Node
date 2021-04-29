@@ -4,7 +4,7 @@
 
 
 <ng-template #showData>
-  <div class="row border">
+  <div class="row">
     <div class="col-md-8 p-1">
       <table class="table table-bordered table-sm table-hover">
         <thead>
@@ -66,9 +66,13 @@
 
 
 <ng-template #emptyMessage>
-  <div class="row border justify-content-md-center">
+  <div class="row justify-content-md-center">
     <div class="alert alert-danger mt-3">
       No hay universidades para este profesor
     </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <button class="btn btn-outline-info" [routerLink]="['/professor/associate-with-universities']"
+      routerLinkActive="router-link-active">Associate Professor whit University</button>
   </div>
 </ng-template>

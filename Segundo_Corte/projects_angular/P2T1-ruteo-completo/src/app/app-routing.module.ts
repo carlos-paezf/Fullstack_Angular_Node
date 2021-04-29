@@ -19,6 +19,8 @@ import { UniversityEditComponent } from './components/public/university/universi
 import { UniversityViewComponent } from './components/public/university/university-view/university-view.component';
 import { UniversityAdminComponent } from './components/public/university/university-admin/university-admin.component';
 import { ValidationComponent } from './components/access/validation/validation.component';
+import { AssociateUniversityWithProfessorComponent } from './components/public/associate/associate-university-with-professor/associate-university-with-professor.component';
+import { AssociateProfessorWithUniversityComponent } from './components/public/associate/associate-professor-with-university/associate-professor-with-university.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -28,6 +30,7 @@ const routes: Routes = [
     { path: 'edit/:codProfessor', component: ProfessorEditComponent },
     { path: 'view', component: ProfessorViewComponent },
     { path: 'admin', component: ProfessorAdminComponent },
+    { path: 'associate-with-universities', component: AssociateUniversityWithProfessorComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent }
   ]},
@@ -37,6 +40,7 @@ const routes: Routes = [
     { path: 'edit/:codUniversity', component: UniversityEditComponent },
     { path: 'view', component: UniversityViewComponent },
     { path: 'admin', component: UniversityAdminComponent },
+    { path: 'associate-with-professors', component: AssociateProfessorWithUniversityComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent }
   ]},

@@ -126,7 +126,7 @@
                   'is-invalid': formCreate.submitted && photoPro.invalid
                 }" required accept="image/x-png, image/jpeg, image/gif" />
               <button class="btn btn-outline-info btn-sm" type="button" (click)="fileInput.click()">
-                <span>+</span>
+                <span><i class="fas fa-image"></i></span>
                 <input type="file" (change)="selectPhoto($event)" style="display: none" #fileInput />
               </button>
             </div>
@@ -148,7 +148,7 @@
               <option value="" class="list-group-item list-group-item-action"
                 *ngFor="let objUni of arrayUniversities; let i = index"
                 [class.list-group-item-info]="objUni == objUniversity"
-                (click)="selectUniversity(objUni.cod, objUni.nameUniversity, objUni.logo)">
+                (click)="selectUniversity(objUni.cod, objUni.nameUniversity, objUni.logo, objUni.logoBase64)">
                 {{ i+1 }}. {{ objUni.nameUniversity }}
               </option>
             </select>

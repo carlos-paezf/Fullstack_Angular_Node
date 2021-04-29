@@ -12,3 +12,8 @@
     background: rgb(153, 127, 212);
     background: linear-gradient(180deg, rgba(153, 127, 212, 1) 0%, rgba(111, 81, 180, 1) 11%, rgba(84, 40, 154, 1) 25%, rgba(67, 24, 131, 1) 38%, rgba(34, 13, 65, 1) 53%, rgba(28, 7, 61, 1) 70%, rgba(19, 3, 41, 1) 84%, rgba(1, 0, 1, 1) 100%);
 }
+
+.trash_red {
+  color: rgb(243, 105, 105);
+  font-size: 20px;
+}

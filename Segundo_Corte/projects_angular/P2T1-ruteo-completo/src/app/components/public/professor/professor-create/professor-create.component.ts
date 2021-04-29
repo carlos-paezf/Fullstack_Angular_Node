@@ -54,6 +54,13 @@ export class ProfessorCreateComponent implements OnInit {
     };
   }
 
+  public selectUniversity(cod:number, name:string, logo:string, logoBase64:string): void{
+    this.objUniversity.cod = cod;
+    this.objUniversity.nameUniversity = name;
+    this.objUniversity.logo = logo;
+    this.objUniversity.logoBase64 = logoBase64;
+  }
+
   public sendInfo(form:NgForm): boolean{
     this.createProfessor();
     this.objProfessor = new Professor(0,'','','','');
@@ -68,12 +75,7 @@ export class ProfessorCreateComponent implements OnInit {
     ARRAY_PROFESSOR.push(this.objProfessor);
     ARRAY_PROFESSOR_UNIVERSITY.push(this.objProfessorUniversity);
     this.router.navigate(['/professor/view']);
-  }
-
-  public selectUniversity(cod:number, name:string, logo:string): void{
-    this.objUniversity.cod = cod;
-    this.objUniversity.nameUniversity = name;
-    this.objUniversity.logo = logo;
+    console.log(ARRAY_PROFESSOR_UNIVERSITY);
   }
 
   public ToastrModal(message:string, title:string, opcion:number):void{
