@@ -21,6 +21,7 @@ export class AssociateProfessorWithUniversityComponent implements OnInit {
   public objProfessorUniversity: ProfessorUniversity;
   public objUniversity: University;
   public objProfessor: Professor;
+  public tempArray: any;
 
   constructor(private toastr: ToastrService, private router: Router) {
     this.arrayProfessorsUniversities = ARRAY_PROFESSOR_UNIVERSITY;
@@ -29,6 +30,7 @@ export class AssociateProfessorWithUniversityComponent implements OnInit {
     this.objProfessorUniversity = new ProfessorUniversity(new Professor(0, '', '', '', ''), new University(0, '', '', ''));
     this.objUniversity = new University(0, '', '', '');
     this.objProfessor = new Professor(0, '', '', '', '');
+    this.tempArray = [];
   }
 
   ngOnInit(): void {
@@ -39,15 +41,34 @@ export class AssociateProfessorWithUniversityComponent implements OnInit {
   }
 
   public selectProfessor(obj: Professor): void {
-    this.objProfessor = obj;
+    this.tempArray.push(this.objProfessor = obj);
   }
 
   public createAssociate(objUni: University, objPro: Professor): void {
     this.objProfessorUniversity = new ProfessorUniversity(objPro, objUni);
-    ARRAY_PROFESSOR_UNIVERSITY.push(this.objProfessorUniversity);
-    this.ToastrModal('Linkage has been <b>successful</b>', 'Success', 1);
-    this.router.navigate(['/external/university/university-detail']);
+
+    if (this.objProfessorUniversity.codUniversity.cod == 0 && this.objProfessorUniversity.codProfessor.cod == 0) {
+      this.ToastrModal('Los codigos no pueden ser nulos', 'ERROR', 4);
+    } else {
+      if (ARRAY_PROFESSOR_UNIVERSITY.find((profUni) =>
+        profUni.codUniversity.cod === this.objProfessorUniversity.codUniversity.cod &&
+        profUni.codProfessor.cod === this.objProfessorUniversity.codProfessor.cod
+      )) {
+        this.ToastrModal('Profesor ya vinculado', 'Error', 3);
+      } else if (this.objProfessorUniversity.codUniversity.cod == 0 || this.objProfessorUniversity.codProfessor.cod == 0) {
+        this.ToastrModal('No se admiten datos sin seleccionar', 'Warning', 3);
+      } else {
+        for (let index = 0; index < this.tempArray.length; index++) {
+          const element = this.tempArray[index];
+          this.objProfessorUniversity = new ProfessorUniversity(element, this.objUniversity);
+          ARRAY_PROFESSOR_UNIVERSITY.push(this.objProfessorUniversity);
+        }
+        this.ToastrModal('Linkage has been <b>successful</b>', 'Success', 1);
+        this.router.navigate(['/external/university/university-detail']);
+      }
+    }
   }
+
 
 
   public ToastrModal(message: string, title: string, opcion: number): void {

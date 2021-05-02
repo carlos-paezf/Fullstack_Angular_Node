@@ -3,24 +3,40 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { ARRAY_PROFESSOR } from 'src/app/mocks/professor-mock';
+import { ARRAY_PROFESSOR_UNIVERSITY } from 'src/app/mocks/professor-university-mock';
 import { ARRAY_UNIVERSITY } from 'src/app/mocks/university-mock';
+import { Professor } from 'src/app/models/professor';
+import { ProfessorUniversity } from 'src/app/models/professor-university';
 import { University } from 'src/app/models/university';
+import { ArrayPipe } from 'src/app/pipes/array.pipe';
 
 @Component({
   selector: 'app-university-create',
   templateUrl: './university-create.component.html',
-  styleUrls: ['./university-create.component.css']
+  styleUrls: ['./university-create.component.css'],
+  providers: [ArrayPipe]
 })
 export class UniversityCreateComponent implements OnInit {
 
   public tempBase64: any;
   public objUniversity: University;
+  public arrayProfessors: Array<Professor>;
+  public objProfessor: Professor;
+  public objUniversityProfessor: ProfessorUniversity;
+  public tempArray: any;
 
-  constructor(public modalService:BsModalService, private toastr:ToastrService, private router:Router) {
+  constructor(private order:ArrayPipe, public modalService:BsModalService, private toastr:ToastrService, private router:Router) {
     this.objUniversity = new University(0,'','','');
+    this.arrayProfessors = [];
+    this.objProfessor = new Professor(0,'','','','');
+    this.objUniversityProfessor = new ProfessorUniversity(this.objProfessor, this.objUniversity);
+    this.tempArray = [];
   }
 
   ngOnInit(): void {
+    const parameters = ['nameProfessor', 'ASC'];
+    this.arrayProfessors = this.order.transform(ARRAY_PROFESSOR, parameters);
   }
 
   public selectedPhoto(input: any): any {
@@ -38,6 +54,12 @@ export class UniversityCreateComponent implements OnInit {
     };
   }
 
+  public selectProfessor(obj: Professor): void{
+    this.objProfessor = obj;
+    this.tempArray.push(this.objProfessor);
+    console.log(this.tempArray);
+  }
+
   public sendInfo(form: NgForm): boolean {
     this.createUniversity();
     this.objUniversity = new University(0,'','','');
@@ -49,6 +71,11 @@ export class UniversityCreateComponent implements OnInit {
   public createUniversity(): void{
     this.objUniversity.cod = ARRAY_UNIVERSITY.length+1;
     ARRAY_UNIVERSITY.push(this.objUniversity);
+    for (let index = 0; index < this.tempArray.length; index++) {
+      const element = this.tempArray[index];
+      this.objUniversityProfessor = new ProfessorUniversity(element, this.objUniversity);
+      ARRAY_PROFESSOR_UNIVERSITY.push(this.objUniversityProfessor);
+    }
   }
 
   public ToastrModal(message: string, title: string, opcion: number) {

@@ -44,9 +44,12 @@
               }; let i=index">
         <th scope="row">{{ objUni.cod }}</th>
         <td>{{ objUni.nameUniversity }}</td>
-        <td>{{ objUni.logo }}</td>
         <td>
-          <i class="far fa-trash-alt" (click)="openModal(modalDelete, objUni)"></i> &nbsp;
+          <img [src]="objUni.logoBase64" alt="Without Logo" class="img-thumbnail" style="height: 50px; width: 50px;"
+            onerror="this.src='../assets/img/withoutLogo.png'" />
+        </td>
+        <td style="text-align: center; vertical-align: middle;">
+          <i class="far fa-trash-alt trash_red" (click)="openModal(modalDelete, objUni)"></i> &nbsp;
           <a [routerLink]="['/university/edit', objUni.cod]">
             <i class="far fa-edit "></i>
           </a>

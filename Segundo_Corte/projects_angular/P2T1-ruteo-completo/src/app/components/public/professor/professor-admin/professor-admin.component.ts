@@ -61,6 +61,7 @@ export class ProfessorAdminComponent implements OnInit {
 
   public deleteProfessor(objProfessor: Professor): void {
     this.arrayProfessors = this.arrayProfessors.filter(element => element != objProfessor);
+    ARRAY_PROFESSOR.splice(0, ARRAY_PROFESSOR.length, ...ARRAY_PROFESSOR.filter(element => element !== objProfessor));
     this.selectedProfessor = new Professor(0, '', '', '', '');
   }
 

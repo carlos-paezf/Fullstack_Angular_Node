@@ -42,7 +42,10 @@
           }; let i=index">
         <th scope="row">{{ objUni.cod }}</th>
         <td>{{ objUni.nameUniversity }}</td>
-        <td>{{ objUni.logo }}</td>
+        <td>
+          <img [src]="objUni.logoBase64" alt="Without Logo" class="img-thumbnail" style="height: 50px; width: 50px;"
+            onerror="this.src='../assets/img/withoutLogo.png'" />
+        </td>
       </tr>
     </tbody>
   </table>

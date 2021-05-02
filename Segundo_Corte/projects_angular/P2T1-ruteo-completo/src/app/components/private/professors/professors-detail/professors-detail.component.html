@@ -1,5 +1,5 @@
 <div class="container">
-  <div *ngIf="amountUniversities > 0; then showData; else emptyMessage"></div>
+  <div *ngIf="amountUniversities <= 0; then emptyMessage; else showData"></div>
 </div>
 
 
@@ -59,6 +59,14 @@
               onerror="this.src='../assets/img/withoutLogo.png'" alt="Error in photo">
           </div>
         </div>
+
+        <div class="row mt-5 mx-3">
+          <button class="btn btn-block btn-outline-danger" type="submit"
+            (click)="openModal(modalDelete, selectedProfessorUniversity)">
+            Remove Association
+          </button>
+        </div>
+
       </div>
     </div>
   </div>
@@ -74,5 +82,26 @@
   <div class="row justify-content-md-center">
     <button class="btn btn-outline-info" [routerLink]="['/professor/associate-with-universities']"
       routerLinkActive="router-link-active">Associate Professor whit University</button>
+  </div>
+</ng-template>
+
+
+
+<!--Ventana Modal para confirmación de eliminación-->
+<ng-template #modalDelete>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">{{ modalTitle }}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    {{ modalText }} <br /><br />
+    <b>Professor's Name: </b>{{ modalProfessor }}<br />
+    <b>University's name: </b>{{ modalUniversity }}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-light" (click)="cancelDelete()">Cancel</button>
+    <button type="button" class="btn btn-outline-danger" (click)="delete()">Delete</button>
   </div>
 </ng-template>

@@ -10,6 +10,7 @@
   </nav>
 </div>
 
+<!--
 <section class="container">
   <div class="row">
     <div class="col-md-12 pt-5">
@@ -45,6 +46,62 @@
               </button>
             </div>
 
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<section class="container">
+  <div class="row">
+    <div class="col-md-12 pt-5">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="text-center mb-3">Associate an University with a Professor</h5>
+          <form>
+            <div class="row mt-2">
+
+              <div class="form-group col-md-6">
+                <div class="my-3">
+                  <label for="inputState">Universities</label>
+                  <div class="form-check px-5 border" style="height:250px; overflow-y: scroll; border-radius: 0.5rem">
+                    <div class="mt-2" *ngFor="let objUni of arrayUniversities; let i = index">
+                      <label>
+                        <input class="form-check-input" type="radio" value="" id="professorCheck"
+                          name="professorCheck" (click)="selectUniversity(objUni)">
+                        <small>{{ i+1 }}.</small> {{ objUni.nameUniversity}}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-6">
+                <div class="my-3">
+                  <label for="inputState">Professors</label>
+                  <div class="form-check px-5 border" style="height:250px; overflow-y: scroll; border-radius: 0.5rem">
+                    <div class="mt-2" *ngFor="let objProf of arrayProfessors; let i = index">
+                      <label>
+                        <input class="form-check-input" type="checkbox" value="" id="professorCheck"
+                          name="professorCheck"
+                          (click)="selectProfessor(objProf)">
+                        <small>{{ i+1 }}.</small> {{ objProf.nameProfessor }}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group mx-auto col-sm-4">
+                <button class="btn btn-block btn-success" type="submit" style="border-radius: 2rem"
+                  (click)="createAssociate(objUniversity, objProfessor)">
+                  Associate
+                </button>
+              </div>
+
+            </div>
           </form>
         </div>
       </div>

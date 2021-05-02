@@ -44,7 +44,10 @@
         <th scope="row">{{ objProf.cod }}</th>
         <td>{{ objProf.document }}</td>
         <td>{{ objProf.nameProfessor }}</td>
-        <td>{{ objProf.photo }}</td>
+        <td>
+          <img [src]="objProf.photoBase64" alt="Without Photo" class="img-thumbnail" style="height: 50px; width: 50px;"
+            onerror="this.src='../assets/img/withoutPhoto.png'" />
+        </td>
       </tr>
     </tbody>
   </table>

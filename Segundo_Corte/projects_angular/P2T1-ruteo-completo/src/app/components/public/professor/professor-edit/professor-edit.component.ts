@@ -22,14 +22,10 @@ export class ProfessorEditComponent implements OnInit {
   public tempBase64: any;
   public objProfessor: Professor;
   public arrayUniversities: Array<University>;
-  public objUniversity: University;
-  public objProfessorUniversity: ProfessorUniversity;
 
   constructor(private order:ArrayPipe, public modalService: BsModalService, private toastr: ToastrService, private route: ActivatedRoute) {
     this.objProfessor = new Professor(0, '', '', '', '');
     this.arrayUniversities = [];
-    this.objUniversity = new University(0, '', '', '');
-    this.objProfessorUniversity = new ProfessorUniversity(this.objProfessor, this.objUniversity);
   }
 
   //! Consumir Servicios de Backend
@@ -41,9 +37,6 @@ export class ProfessorEditComponent implements OnInit {
       tempObject = ARRAY_PROFESSOR.find((professor)=>professor.cod===numericalData);
       this.objProfessor = tempObject;
     });
-    const parameters = ['nameUniversity', 'ASC'];
-    this.arrayUniversities = this.order.transform(ARRAY_UNIVERSITY, parameters);
-    console.log('Hi, I´m Ferrer');
   }
 
   public selectPhoto(input: any): any {
@@ -64,16 +57,10 @@ export class ProfessorEditComponent implements OnInit {
   }
 
   public sendInfo(form: NgForm): boolean {
-    this.objProfessorUniversity = new ProfessorUniversity(this.objProfessor, this.objUniversity);
     this.ToastrModal('The professor has been <b>updated</b> successfully', 'Success', 1);
     return true;
   }
 
-  public selectUniversity(cod:number, name:string, logo:string): void{
-    this.objUniversity.cod = cod;
-    this.objUniversity.nameUniversity = name;
-    this.objUniversity.logo = logo;
-  }
 
   public ToastrModal(message: string, title: string, opcion: number): void {
     const parameters = {

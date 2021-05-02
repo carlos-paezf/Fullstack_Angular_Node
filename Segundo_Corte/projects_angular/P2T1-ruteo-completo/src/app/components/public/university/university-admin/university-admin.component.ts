@@ -60,6 +60,7 @@ export class UniversityAdminComponent implements OnInit {
 
   public deleteUniversity(objUniversity: University): void {
     this.arrayUniversities = this.arrayUniversities.filter(element => element != objUniversity);
+    ARRAY_UNIVERSITY.splice(0, ARRAY_UNIVERSITY.length, ...ARRAY_UNIVERSITY.filter(element => element !== objUniversity));
     this.selectedUniversity = new University(0, '', '', '');
   }
 
