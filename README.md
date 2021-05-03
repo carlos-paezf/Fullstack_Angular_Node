@@ -203,3 +203,17 @@ Algunas de las extensiones practicas para Angular desde VS Code, son:
 - Angular Language Service
 - Angular Snippets (Version 11)
 - Angular Essentials (Version 11)
+
+
+## Extensiones para Atom
+
+Para la parte del Backend podemos hacer uso del editor Atom, y en este caso, instale las siguientes extensiones:
+
+- atom-beautify
+- atom-file-icons
+- atom-typescript
+- goto-definition
+- linter-ui
+- linter-ui-default
+- kite
+- platformio-ide-terminal
