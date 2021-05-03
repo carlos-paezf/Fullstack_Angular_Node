@@ -55,9 +55,9 @@ export class UniversityCreateComponent implements OnInit {
   }
 
   public selectProfessor(obj: Professor): void{
-    this.objProfessor = obj;
-    this.tempArray.push(this.objProfessor);
-    console.log(this.tempArray);
+    if (!this.tempArray.includes(obj)){
+      this.tempArray.push(this.objProfessor = obj);
+    }
   }
 
   public sendInfo(form: NgForm): boolean {
@@ -71,6 +71,7 @@ export class UniversityCreateComponent implements OnInit {
   public createUniversity(): void{
     this.objUniversity.cod = ARRAY_UNIVERSITY.length+1;
     ARRAY_UNIVERSITY.push(this.objUniversity);
+    this.router.navigate(['/university/view']);
     for (let index = 0; index < this.tempArray.length; index++) {
       const element = this.tempArray[index];
       this.objUniversityProfessor = new ProfessorUniversity(element, this.objUniversity);

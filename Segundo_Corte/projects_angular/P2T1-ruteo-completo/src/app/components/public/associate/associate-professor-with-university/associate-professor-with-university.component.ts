@@ -7,11 +7,13 @@ import { ARRAY_UNIVERSITY } from 'src/app/mocks/university-mock';
 import { Professor } from 'src/app/models/professor';
 import { ProfessorUniversity } from 'src/app/models/professor-university';
 import { University } from 'src/app/models/university';
+import { ArrayPipe } from 'src/app/pipes/array.pipe';
 
 @Component({
   selector: 'app-associate-professor-with-university',
   templateUrl: './associate-professor-with-university.component.html',
-  styleUrls: ['./associate-professor-with-university.component.css']
+  styleUrls: ['./associate-professor-with-university.component.css'],
+  providers: [ArrayPipe]
 })
 export class AssociateProfessorWithUniversityComponent implements OnInit {
 
@@ -22,8 +24,9 @@ export class AssociateProfessorWithUniversityComponent implements OnInit {
   public objUniversity: University;
   public objProfessor: Professor;
   public tempArray: any;
+  public selectedCheck: boolean;
 
-  constructor(private toastr: ToastrService, private router: Router) {
+  constructor(private order: ArrayPipe, private toastr: ToastrService, private router: Router) {
     this.arrayProfessorsUniversities = ARRAY_PROFESSOR_UNIVERSITY;
     this.arrayUniversities = ARRAY_UNIVERSITY;
     this.arrayProfessors = ARRAY_PROFESSOR;
@@ -31,9 +34,12 @@ export class AssociateProfessorWithUniversityComponent implements OnInit {
     this.objUniversity = new University(0, '', '', '');
     this.objProfessor = new Professor(0, '', '', '', '');
     this.tempArray = [];
+    this.selectedCheck = false;
   }
 
   ngOnInit(): void {
+    this.arrayUniversities = this.order.transform(ARRAY_UNIVERSITY, ['nameUniversity', 'ASC']);
+    this.arrayProfessors = this.order.transform(ARRAY_PROFESSOR, ['nameProfessor', 'ASC']);
   }
 
   public selectUniversity(obj: University): void {
@@ -41,22 +47,30 @@ export class AssociateProfessorWithUniversityComponent implements OnInit {
   }
 
   public selectProfessor(obj: Professor): void {
-    this.tempArray.push(this.objProfessor = obj);
+    if (!this.selectedCheck) {
+      if (!this.tempArray.includes(obj)) {
+        this.tempArray.push(this.objProfessor = obj);
+      }
+    } else {
+      let pos = this.tempArray.indexOf(obj);
+      delete this.tempArray[pos];
+    }
+    console.log(this.tempArray);
   }
 
   public createAssociate(objUni: University, objPro: Professor): void {
     this.objProfessorUniversity = new ProfessorUniversity(objPro, objUni);
 
     if (this.objProfessorUniversity.codUniversity.cod == 0 && this.objProfessorUniversity.codProfessor.cod == 0) {
-      this.ToastrModal('Los codigos no pueden ser nulos', 'ERROR', 4);
+      this.ToastrModal('The codes can not be null', 'ERROR', 4);
     } else {
       if (ARRAY_PROFESSOR_UNIVERSITY.find((profUni) =>
-        profUni.codUniversity.cod === this.objProfessorUniversity.codUniversity.cod &&
-        profUni.codProfessor.cod === this.objProfessorUniversity.codProfessor.cod
+        profUni.codProfessor.cod === this.objProfessorUniversity.codProfessor.cod ||
+        profUni.codUniversity.cod === this.objProfessorUniversity.codUniversity.cod
       )) {
-        this.ToastrModal('Profesor ya vinculado', 'Error', 3);
-      } else if (this.objProfessorUniversity.codUniversity.cod == 0 || this.objProfessorUniversity.codProfessor.cod == 0) {
-        this.ToastrModal('No se admiten datos sin seleccionar', 'Warning', 3);
+        this.ToastrModal('Professor already linked', 'Error', 3);
+      } else if (this.objProfessorUniversity.codProfessor.cod == 0 || this.objProfessorUniversity.codUniversity.cod == 0) {
+        this.ToastrModal('Details are not allowed without selecting', 'Warning', 3);
       } else {
         for (let index = 0; index < this.tempArray.length; index++) {
           const element = this.tempArray[index];

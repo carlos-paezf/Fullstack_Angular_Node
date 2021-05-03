@@ -57,14 +57,14 @@ export class ProfessorCreateComponent implements OnInit {
   }
 
   public selectUniversity(obj: University): void{
-    this.objUniversity = obj;
-    this.tempArray.push(this.objUniversity);
+    if (!this.tempArray.includes(obj)){
+      this.tempArray.push(this.objUniversity = obj);
+    }
   }
 
   public sendInfo(form:NgForm): boolean{
     this.createProfessor();
     this.objProfessor = new Professor(0,'','','','');
-    this.objProfessorUniversity = new ProfessorUniversity(this.objProfessor, this.objUniversity);
     this.ToastrModal('The professor has been <b>created</b> successfully', 'Success', 1);
     this.router.navigate(['/professor/view']);
     return true;
@@ -73,7 +73,6 @@ export class ProfessorCreateComponent implements OnInit {
   public createProfessor(): void{
     this.objProfessor.cod = ARRAY_PROFESSOR.length+1;
     ARRAY_PROFESSOR.push(this.objProfessor);
-    ARRAY_PROFESSOR_UNIVERSITY.push(this.objProfessorUniversity);
     this.router.navigate(['/professor/view']);
     console.log(ARRAY_PROFESSOR_UNIVERSITY);
     for (let index = 0; index < this.tempArray.length; index++) {

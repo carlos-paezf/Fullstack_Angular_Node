@@ -7,11 +7,13 @@ import { ARRAY_UNIVERSITY } from 'src/app/mocks/university-mock';
 import { Professor } from 'src/app/models/professor';
 import { ProfessorUniversity } from 'src/app/models/professor-university';
 import { University } from 'src/app/models/university';
+import { ArrayPipe } from 'src/app/pipes/array.pipe';
 
 @Component({
   selector: 'app-associate-university-with-professor',
   templateUrl: './associate-university-with-professor.component.html',
-  styleUrls: ['./associate-university-with-professor.component.css']
+  styleUrls: ['./associate-university-with-professor.component.css'],
+  providers: [ArrayPipe]
 })
 export class AssociateUniversityWithProfessorComponent implements OnInit {
 
@@ -23,7 +25,7 @@ export class AssociateUniversityWithProfessorComponent implements OnInit {
   public objUniversity: University;
   public tempArray: any;
 
-  constructor(private toastr: ToastrService, private router: Router) {
+  constructor(private order:ArrayPipe, private toastr: ToastrService, private router: Router) {
     this.arrayProfessorsUniversities = ARRAY_PROFESSOR_UNIVERSITY;
     this.arrayProfessors = ARRAY_PROFESSOR;
     this.arrayUniversities = ARRAY_UNIVERSITY;
@@ -34,6 +36,8 @@ export class AssociateUniversityWithProfessorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.arrayUniversities = this.order.transform(ARRAY_UNIVERSITY, ['nameUniversity', 'ASC']);
+    this.arrayProfessors = this.order.transform(ARRAY_PROFESSOR, ['nameProfessor', 'ASC']);
   }
 
   public selectProfessor(objPro: Professor): void {
@@ -41,11 +45,14 @@ export class AssociateUniversityWithProfessorComponent implements OnInit {
   }
 
   public selectUniversity(objUni: University): void {
-    this.tempArray.push(this.objUniversity = objUni);
+    if (!this.tempArray.includes(objUni)){
+      this.tempArray.push(this.objUniversity = objUni);
+    }
   }
 
   public createAssociate(objPro: Professor, objUni: University): void {
     this.objProfessorUniversity = new ProfessorUniversity(objPro, objUni);
+
     if (this.objProfessorUniversity.codProfessor.cod == 0 && this.objProfessorUniversity.codUniversity.cod == 0) {
       this.ToastrModal('Los codigos no pueden ser nulos', 'ERROR', 4);
     } else {
