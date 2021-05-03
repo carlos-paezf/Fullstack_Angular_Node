@@ -25,8 +25,8 @@ Conocer la versión de Angular CLI:
 ```
 ng v
 ```
-  
-  
+
+
 ## Principios de un proyecto
 
 Durante la clase se hace uso del editor de código Visual Studio Code y/o Atom. Se hace uso de Angular para las secciones de Frontend, y Node para Backend con Typescript; es por ello que los proyectos de Angular se almacenan en un directorio diferente a los proyectos de Node.
@@ -40,8 +40,8 @@ Para desplegar un servidor desde ng
 ```
 ng serve
 ```
-  
-  
+
+
 ## Añadir algunas librerias
 ```
 npm i --save jquery
@@ -65,7 +65,7 @@ npm i --save @fortawesome/fontawesome-free
 npm i --save ngx-pagination
 ```
 Para revisar si las dependencias estan instaladas, revisar en el archivo package.json  
-  
+
 Posteriormente, modificar lo siguiente en el archivo angular.json:
 ```json
 "styles": [
@@ -116,6 +116,7 @@ En el archivo de app.module.ts, ingresar lo siguiente:
 ```typescript
 import {FormsModule} from '@angular/forms';
 ```
+
 ```typescript
 imports: [
     ...,
@@ -217,3 +218,92 @@ Para la parte del Backend podemos hacer uso del editor Atom, y en este caso, ins
 - linter-ui-default
 - kite
 - platformio-ide-terminal
+
+
+
+# Backend
+
+Para iniciar un proyecto, ingresamos en la terminal el siguiente comando:
+```
+npm init --yes
+```
+
+Hay algunas dependencias "obligatorias" y para instalarlas se ingresa:
+```
+npm i express morgan cors promise-mysql
+```
+Express es un componente de node que permite administrar el servidor
+morgan permite hacer conexiones de tipo Http
+cors permite manejar cabeceras de envio y recepcion de información
+promise-mysql permite administrar las promesas que se reciben desde la BBDD.
+
+
+Para visualizar los errores en el uso de mysql, existe la siguiente librería:
+```
+npm i --save mysql-error-codes
+```
+
+La '-D' es para grabar en desarrollo
+```
+npm i nodemon -D
+```
+
+Las siguientes librerías son bastante famosas y utiles:
+```
+npm i jsonwebtoken
+```
+
+Cuando hacemos la instalación con @types, podemos ___-_-_--
+```
+npm i --save @types/jsonwebtoken
+```
+
+```
+npm i --save @types/morgan -D
+```
+
+```
+npm i --save @types/cors -D
+```
+
+```
+npm i --save @types/express
+```
+
+
+Para generar el archivo de tsconfig.json ingresamos el siguiente comando:
+```
+tsc --init
+```
+
+Dentro de este último archivo, podemos modificar algunas opciones basicas:
+
+```json
+{
+  "compilerOptions": {
+      "target": "es6",
+      //...,
+      "outDir": "./build",      /* build para ser el directorio de compilado */
+  }
+}
+```
+
+Para correr la configuración, debemos hacer un cambio en el archivo package.json:
+```json
+{
+  "scripts": {
+    ...,
+    "build": "tsc -w",
+    "dev": "nodemon build/index.js"
+  },
+}
+```
+
+
+Para ejecutarlo ingresamos el siguiente comando:
+```
+npm run build
+```
+```
+npm run dev
+```
