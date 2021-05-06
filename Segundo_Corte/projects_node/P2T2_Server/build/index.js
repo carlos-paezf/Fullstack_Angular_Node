@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
 const express_1 = __importDefault(require("express"));
+const indexroutes_1 = __importDefault(require("./routes/indexroutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
@@ -22,7 +23,7 @@ class Server {
         }));
     }
     routes() {
-        //! rutas aqui, pero faltan los controllers
+        this.app.use('/', indexroutes_1.default);
     }
     start() {
         this.app.listen(this.app.get('PORT'), () => {

@@ -1,6 +1,7 @@
 import cors from 'cors';
 import morgan from 'morgan';
 import express from 'express';
+import indexRoutes from './routes/indexroutes';
 
 class Server {
   public app: express.Application;
@@ -23,7 +24,7 @@ class Server {
   }
 
   public routes(): void {
-    //! rutas aqui, pero faltan los controllers
+    this.app.use('/', indexRoutes);
   }
 
   public start(): void {

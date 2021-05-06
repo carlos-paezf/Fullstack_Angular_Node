@@ -211,17 +211,22 @@ Algunas de las extensiones practicas para Angular desde VS Code, son:
 Para la parte del Backend podemos hacer uso del editor Atom, y en este caso, instale las siguientes extensiones:
 
 - atom-beautify
-- atom-file-icons
 - atom-typescript
+- file-icons
 - goto-definition
+- kite
 - linter-ui
 - linter-ui-default
-- kite
 - platformio-ide-terminal
 
 
 
 # Backend
+
+Para hacer una instalación global de typescript, ingresamos el siguiente comando:
+```
+npm i -g typescript
+```
 
 Para iniciar un proyecto, ingresamos en la terminal el siguiente comando:
 ```
