@@ -1,4 +1,4 @@
-import config from './configurationDB';
+import config from './configurationdb';
 import mysql from 'mysql';
 
 const pool = mysql.createPool(config.database);
