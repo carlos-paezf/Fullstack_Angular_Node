@@ -5,7 +5,7 @@ class IndexController {
     index(req, res) {
         console.log(req.headers);
         res.json({
-            'answer': 'The public API is in XX',
+            'answer': 'The public API is in /api/public/roles',
             'answer2': 'Other answer'
         });
     }

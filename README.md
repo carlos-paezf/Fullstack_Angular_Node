@@ -258,7 +258,7 @@ Las siguientes librerías son bastante famosas y utiles:
 npm i jsonwebtoken
 ```
 
-Cuando hacemos la instalación con @types, podemos ___-_-_--
+Cuando hacemos la instalación con @types, podemos ingresar
 ```
 npm i --save @types/jsonwebtoken
 ```

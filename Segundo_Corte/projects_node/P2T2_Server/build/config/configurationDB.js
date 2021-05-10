@@ -4,8 +4,8 @@ exports.default = {
     database: {
         dialect: 'mysql',
         host: 'localhost',
-        user: '',
-        password: '',
-        database: '',
+        user: 'user_fullstack',
+        password: 'admin1234',
+        database: 'db_fullstack',
     }
 };

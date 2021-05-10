@@ -1,0 +1,5 @@
+CREATE TABLE rol(
+  codrol INT NOT NULL AUTO_INCREMENT,
+  namerol VARCHAR(500) NOT NULL,
+  PRIMARY KEY(codrol)
+);
