@@ -3,3 +3,18 @@ CREATE TABLE rol(
   namerol VARCHAR(500) NOT NULL,
   PRIMARY KEY(codrol)
 );
+
+CREATE TABLE user(
+  coduser INT NOT NULL AUTO_INCREMENT,
+  codrol INT NOT NULL,
+  email VARCHAR(200) NOT NULL,
+  password VARCHAR(150) NOT NULL,
+  PRIMARY KEY(coduser)
+);
+
+CREATE UNIQUE INDEX ind_email ON user(email);
+
+ALTER TABLE user ADD CONSTRAINT fk_user_rol
+FOREIGN KEY(codrol) REFERENCES rol(codrol)
+ON DELETE RESTRICT
+ON UPDATE CASCADE;
