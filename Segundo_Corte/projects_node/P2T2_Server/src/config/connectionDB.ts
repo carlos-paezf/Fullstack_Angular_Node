@@ -7,7 +7,20 @@ export default pool;
 
 pool.getConnection(function(error, connection){
   if (error){
-    console.log('El cod del error es: ', error.code);
+    switch (error.code) {
+      case 'ER_BAD_DB_ERROR':
+        console.log('The database not exists ', config.database.database, ' ', error.code);
+        break;
+      case 'ER_ACCESS_DENIED_ERROR':
+        console.log('The username or password is incorrect ', error.code);
+        break;
+      case 'ENOTFOUND':
+        console.log('Server Error ', error.code);
+        break;
+      default :
+        console.log('Found an Error', error);
+        break;
+    }
   } else {
     if (connection){
       connection.release();

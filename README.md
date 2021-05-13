@@ -312,3 +312,31 @@ npm run build
 ```
 npm run dev
 ```
+
+Estamos haciendo pruebas en Postman para observar la actividad de la API REST, las rutas que ingresamos serían las siguientes:
+
+- http://localhost:8099/ con método GET para:
+
+- http://localhost:8099/api/public/roles con método GET para obtener una lista de todos los roles.
+
+- http://localhost:8099/api/public/roles/create con método POST para crear un nuevo rol dentro de la base de datos. Tener en cuenta que en los *Headers*, debemos cambiar el *Content-Type* por *application/json*. En este caso, debemos ir a *Body*, en opción *raw* y poner algo por este estilo:
+```json
+{
+    "namerol": "Nuevo rol"
+}
+``` 
+
+- http://localhost:8099/api/public/roles/:número con método DELETE para eliminar un rol de la base de datos.
+
+- http://localhost:8099/api/public/roles/update/:número con método PUT para actualizar algun registro. En los *Headers*, debemos añadir un *Content-Type = application/json*. Y por medio de *Body* en opción *raw* ingresamos algo por este estilo:
+```json
+{
+    "namerol": "Registro cambiado"
+}
+```
+
+Es importante aclarar que cuando estamos haciendo el update, debemos prevenir que nos pasen dentro del json el codigo, puesto que este último no se debe modificar, solo su contenido. Para evitar esto, dentro de la función que maneje el update, ingresamos la siguiente línea:
+
+```typescript
+delete req.body.codrol;
+```

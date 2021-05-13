@@ -14,6 +14,7 @@ class RolRoutes {
         this.router.get('/', rolcontroller_1.default.getRoles);
         this.router.post('/create', rolcontroller_1.default.createRol);
         this.router.delete('/:codRol', rolcontroller_1.default.deleteRol);
+        this.router.put('/update/:codRol', rolcontroller_1.default.updateRol);
     }
 }
 const rolRoutes = new RolRoutes();

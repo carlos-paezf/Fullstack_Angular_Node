@@ -22,6 +22,16 @@ class RolController extends managerdb_1.default {
         const query = 'DELETE FROM rol WHERE codrol=?';
         return RolController.executeQuery(query, cod, res, 'DELETE');
     }
+    updateRol(req, res) {
+        if (!isNaN(Number(req.params.codRol))) {
+            const cod = Number(req.params.codRol);
+            delete req.body.codrol;
+            const query = 'UPDATE rol SET ? WHERE codrol=?';
+            const parameters = [req.body, cod];
+            return RolController.executeQuery(query, parameters, res, 'UPDATE');
+        }
+        return Promise.resolve(res.status(400).json({ 'message': 'Invalid cod' }));
+    }
 }
 const rolController = new RolController;
 exports.default = rolController;

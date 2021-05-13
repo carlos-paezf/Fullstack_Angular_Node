@@ -13,6 +13,7 @@ class RolRoutes {
     this.router.get('/', rolController.getRoles);
     this.router.post('/create', rolController.createRol);
     this.router.delete('/:codRol', rolController.deleteRol);
+    this.router.put('/update/:codRol', rolController.updateRol);
   }
 }
 
