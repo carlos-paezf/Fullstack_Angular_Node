@@ -340,3 +340,14 @@ Es importante aclarar que cuando estamos haciendo el update, debemos prevenir qu
 ```typescript
 delete req.body.codrol;
 ```
+
+Se decidio que tambien se hara una API REST pero que conecte con PostgreSQL, por lo que para instalar las dependencias, uso los siguientes comandos para hacer las configuraciones con PostgreSQL:
+
+```
+npm i express morgan cors pg-promise
+```
+
+```
+npm i @drdgvhbh/postgres-error-codes
+```
+
