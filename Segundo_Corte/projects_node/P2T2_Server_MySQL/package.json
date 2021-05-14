@@ -1,5 +1,5 @@
 {
-  "name": "P2T2_Server",
+  "name": "P2T2_Server_MySQL",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
