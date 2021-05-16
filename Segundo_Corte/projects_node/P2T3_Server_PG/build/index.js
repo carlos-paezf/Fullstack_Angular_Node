@@ -6,10 +6,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
 const express_1 = __importDefault(require("express"));
+const indexroutes_1 = __importDefault(require("./routes/indexroutes"));
+const rolroutes_1 = __importDefault(require("./routes/rolroutes"));
+const userroutes_1 = __importDefault(require("./routes/userroutes"));
 class Server {
     constructor() {
         this.app = express_1.default();
         this.config();
+        this.routes();
     }
     config() {
         this.app.set('PORT', process.env.PORT || 8098);
@@ -26,7 +30,9 @@ class Server {
         });
     }
     routes() {
-        //TODO: Faltan las rutas 
+        this.app.use('/', indexroutes_1.default);
+        this.app.use('/api/public/roles', rolroutes_1.default);
+        this.app.use('/api/public/users', userroutes_1.default);
     }
 }
 const server = new Server();

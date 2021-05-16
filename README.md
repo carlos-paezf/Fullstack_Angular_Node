@@ -351,3 +351,6 @@ npm i express morgan cors pg-promise
 npm i @drdgvhbh/postgres-error-codes
 ```
 
+```
+npm i pg
+```

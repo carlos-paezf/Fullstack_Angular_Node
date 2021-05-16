@@ -1,6 +1,9 @@
 import cors from 'cors';
 import morgan from 'morgan';
 import express from 'express';
+import indexRoutes from './routes/indexroutes';
+import rolRoutes from './routes/rolroutes';
+import userRoutes from './routes/userroutes';
 
 
 class Server {
@@ -9,6 +12,7 @@ class Server {
     constructor() {
         this.app = express();
         this.config();
+        this.routes();
     }
 
     public config(): void {
@@ -29,7 +33,9 @@ class Server {
     }
 
     public routes(): void {
-        //TODO: Faltan las rutas 
+        this.app.use('/', indexRoutes);
+        this.app.use('/api/public/roles', rolRoutes);
+        this.app.use('/api/public/users', userRoutes);
     }
 }
 
