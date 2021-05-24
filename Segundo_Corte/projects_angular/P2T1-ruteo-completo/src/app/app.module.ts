@@ -40,6 +40,8 @@ import { UniversitiesPrincipalComponent } from './components/private/universitie
 import { ValidationComponent } from './components/access/validation/validation.component';
 import { AssociateUniversityWithProfessorComponent } from './components/public/associate/associate-university-with-professor/associate-university-with-professor.component';
 import { AssociateProfessorWithUniversityComponent } from './components/public/associate/associate-professor-with-university/associate-professor-with-university.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { MzDashboardComponent } from './components/mz-dashboard/mz-dashboard.component';
 
 
 @NgModule({
@@ -69,7 +71,9 @@ import { AssociateProfessorWithUniversityComponent } from './components/public/a
     UniversityViewComponent,
     ValidationComponent,
     AssociateUniversityWithProfessorComponent,
-    AssociateProfessorWithUniversityComponent
+    AssociateProfessorWithUniversityComponent,
+    CreateUserComponent,
+    MzDashboardComponent
   ],
   imports: [
     BrowserModule,
