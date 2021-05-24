@@ -10,8 +10,9 @@ class UserController extends managerdb_1.default {
         return UserController.executeQuery(query, req, res, 'SELECT');
     }
     createUser(req, res) {
+        delete req.body.token;
         const query = 'INSERT INTO user SET ?';
-        return UserController.executeQuery(query, req.body, res, 'INSERT');
+        return UserController.executeQuery(query, req.body, res, 'INSERT-USER');
     }
     deleteUser(req, res) {
         if (isNaN(Number(req.params.codUser))) {

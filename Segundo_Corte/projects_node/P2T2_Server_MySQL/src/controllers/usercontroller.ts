@@ -9,8 +9,9 @@ class UserController extends ManagerDB {
   }
 
   public createUser(req: Request, res: Response): Promise<any> {
+    delete req.body.token;
     const query: string = 'INSERT INTO user SET ?';
-    return UserController.executeQuery(query, req.body, res, 'INSERT');
+    return UserController.executeQuery(query, req.body, res, 'INSERT-USER');
   }
 
   public deleteUser(req: Request, res: Response): Promise<any> {
@@ -32,6 +33,7 @@ class UserController extends ManagerDB {
     }
     return Promise.resolve(res.status(400).json({'message':'Invalid cod'}));
   }
+
 }
 
 const userController = new UserController();

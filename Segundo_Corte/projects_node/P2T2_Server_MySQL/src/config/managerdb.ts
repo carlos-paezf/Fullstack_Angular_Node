@@ -1,6 +1,6 @@
 import { Response } from 'express';
 import pool from './connectiondb';
-// TODO: jsonWebToken para validaciones
+import jwt from 'jsonwebtoken';
 
 class ManagerDB {
 
@@ -28,16 +28,18 @@ class ManagerDB {
             res.status(200).json({'message': 'Register created', 'id': out.insertId});
             break;
           case 'DELETE':
-            if (out.affectedRows > 0)
-              res.status(200).json({'message': 'Record deleted', 'affected rows': out.affectedRows});
-            else
-              res.status(400).json({'message': 'Rol not found'});
+            out.affectedRows > 0 
+              ? res.status(200).json({'message': 'Record deleted', 'affected rows': out.affectedRows})
+              : res.status(400).json({'message': 'Rol not found'});
             break;
           case 'UPDATE':
-            if (out.affectedRows > 0)
-              res.status(200).json({'message': 'Records updated', 'affected rows': out.affectedRows});
-            else
-              res.status(400).json({'message': 'Rol not found'});
+            out.affectedRows > 0
+              ? res.status(200).json({'message': 'Records updated', 'affected rows': out.affectedRows})
+              : res.status(400).json({'message': 'Rol not found'});
+            break;
+          case 'INSERT-USER':
+            const token = jwt.sign({'id': out.indertId, 'email': parameters.email}, 'privatekey');
+            res.status(200).json({'token': token});
             break;
           default:
             res.status(400).json({ 'answer': 'Service not implemented <--' });

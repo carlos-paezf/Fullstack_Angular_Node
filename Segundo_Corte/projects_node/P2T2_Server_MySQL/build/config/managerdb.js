@@ -13,7 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const connectiondb_1 = __importDefault(require("./connectiondb"));
-// TODO: jsonWebToken para validaciones
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 class ManagerDB {
     //? Solo herencia, ejecución asincrona, retornando una promesa
     static executeQuery(sql, parameters, res, type) {
@@ -41,16 +41,18 @@ class ManagerDB {
                             res.status(200).json({ 'message': 'Register created', 'id': out.insertId });
                             break;
                         case 'DELETE':
-                            if (out.affectedRows > 0)
-                                res.status(200).json({ 'message': 'Record deleted', 'affected rows': out.affectedRows });
-                            else
-                                res.status(400).json({ 'message': 'Rol not found' });
+                            out.affectedRows > 0
+                                ? res.status(200).json({ 'message': 'Record deleted', 'affected rows': out.affectedRows })
+                                : res.status(400).json({ 'message': 'Rol not found' });
                             break;
                         case 'UPDATE':
-                            if (out.affectedRows > 0)
-                                res.status(200).json({ 'message': 'Records updated', 'affected rows': out.affectedRows });
-                            else
-                                res.status(400).json({ 'message': 'Rol not found' });
+                            out.affectedRows > 0
+                                ? res.status(200).json({ 'message': 'Records updated', 'affected rows': out.affectedRows })
+                                : res.status(400).json({ 'message': 'Rol not found' });
+                            break;
+                        case 'INSERT-USER':
+                            const token = jsonwebtoken_1.default.sign({ 'id': out.indertId, 'email': parameters.email }, 'privatekey');
+                            res.status(200).json({ 'token': token });
                             break;
                         default:
                             res.status(400).json({ 'answer': 'Service not implemented <--' });
