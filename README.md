@@ -348,9 +348,35 @@ npm i express morgan cors pg-promise
 ```
 
 ```
-npm i @drdgvhbh/postgres-error-codes
+npm i pg
 ```
 
 ```
-npm i pg
+npm i --save pg-error-codes
+```
+
+# Unir Frontend con Backend
+
+Desde el Backend se pasa un token con una llave privada a través de JsonWebToken. Este token aparece cuando se esta haciendo la creación del usuario. Primero dentro del proyecto del Frontend, intalamos la siguiente librería para crear un cifrado
+
+```
+npm i js-sha512
+```
+
+Para hacer uso de un decode, instalamos la siguiente librería:
+```
+npm i jwt-decode 
+```
+
+El mz o military zone, es donde actua el dashboard. 
+
+Para crear un servicio dentro del frontend, ingresamos el siguiente comando:
+
+```
+ng g s <dir>/<nombre-servicio>
+```
+
+Para crear un Guardian, ingresamos el siguiente comando y seleccionamos CanActivate:
+```
+ng g guard <dir>/<nombre-guardian>
 ```
