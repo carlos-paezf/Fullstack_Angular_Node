@@ -1,49 +1,51 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-/* //! Trato de pasar la clase integrandola a connectiondb.ts
+const connectiondb_1 = __importDefault(require("./connectiondb"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 class ManagerDB {
-
-    protected static async executeQuery(sql: string, parameters: any, res: Response, type: string): Promise<any> {
-        pool.query(sql, parameters, function(error, out) {
-            if (error) {
-                switch (error.code) {
-                    case '':
-                        console.log('Wrong service query', error);
-                        res.status(400).json({ 'answer': 'Wrong service query' });
-                        break;
-                    default:
-                        console.log('Found an Error', error);
-                        break;
-                }
-            } else {
+    static executeQuery(sql, parameters, res, type) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //? pool.query(sql, parameters).then(out => {
+            connectiondb_1.default.result(sql, parameters).then(out => {
                 switch (type.toUpperCase()) {
                     case 'SELECT':
-                        res.status(200).json(out);
+                        res.status(200).json(out.rows);
                         break;
                     case 'INSERT':
-                        res.status(200).json({ 'message': 'Register created', 'id': out.insertId });
+                        res.status(200).json({ 'message': 'Register created', 'id': out.rows });
                         break;
                     case 'DELETE':
-                        if (out.affectedRows > 0)
-                            res.status(200).json({ 'message': 'Record deleted', 'affected rows': out.affectedRows });
-                        else
-                            res.status(400).json({ 'message': 'Rol not found' });
+                        out.rowCount > 0
+                            ? res.status(200).json({ 'message': 'Record deleted', 'affected rows': out.rowCount })
+                            : res.status(400).json({ 'message': 'Rol not found' });
                         break;
                     case 'UPDATE':
-                        if (out.affectedRows > 0)
-                            res.status(200).json({ 'message': 'Records updated', 'affected rows': out.affectedRows });
-                        else
-                            res.status(400).json({ 'message': 'Rol not found' });
+                        out.rowCount > 0
+                            ? res.status(200).json({ 'message': 'Records updated', 'affected rows': out.rowCount })
+                            : res.status(400).json({ 'message': 'Rol not found' });
+                        break;
+                    case 'INSERT-USER':
+                        const token = jsonwebtoken_1.default.sign({ 'id': out, 'email': parameters.email }, 'privatekey');
+                        res.status(200).json({ 'token': token });
                         break;
                     default:
                         res.status(400).json({ 'answer': 'Service not implemented <--' });
                         break;
                 }
-            }
-        })
+            });
+        });
     }
 }
-
-export default ManagerDB;
-
-*/ 
+exports.default = ManagerDB;

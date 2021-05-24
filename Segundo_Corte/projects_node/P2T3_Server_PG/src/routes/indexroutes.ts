@@ -2,10 +2,10 @@ import { Router } from 'express';
 import indexController from '../controllers/indexcontroller';
 
 class IndexRoutes {
-    
+
     public router: Router;
 
-    constructor(){
+    constructor() {
         this.router = Router();
         this.config();
     }
