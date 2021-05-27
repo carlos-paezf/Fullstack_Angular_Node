@@ -40,8 +40,10 @@ import { UniversitiesPrincipalComponent } from './components/private/universitie
 import { ValidationComponent } from './components/access/validation/validation.component';
 import { AssociateUniversityWithProfessorComponent } from './components/public/associate/associate-university-with-professor/associate-university-with-professor.component';
 import { AssociateProfessorWithUniversityComponent } from './components/public/associate/associate-professor-with-university/associate-professor-with-university.component';
-import { CreateUserComponent } from './components/create-user/create-user.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { MzDashboardComponent } from './components/mz-dashboard/mz-dashboard.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -72,7 +74,7 @@ import { MzDashboardComponent } from './components/mz-dashboard/mz-dashboard.com
     ValidationComponent,
     AssociateUniversityWithProfessorComponent,
     AssociateProfessorWithUniversityComponent,
-    CreateUserComponent,
+    SignUpComponent,
     MzDashboardComponent
   ],
   imports: [
@@ -83,7 +85,8 @@ import { MzDashboardComponent } from './components/mz-dashboard/mz-dashboard.com
     BrowserAnimationsModule,
     NgbModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

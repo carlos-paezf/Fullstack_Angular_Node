@@ -21,10 +21,15 @@ import { UniversityAdminComponent } from './components/public/university/univers
 import { ValidationComponent } from './components/access/validation/validation.component';
 import { AssociateUniversityWithProfessorComponent } from './components/public/associate/associate-university-with-professor/associate-university-with-professor.component';
 import { AssociateProfessorWithUniversityComponent } from './components/public/associate/associate-professor-with-university/associate-professor-with-university.component';
+import { MzDashboardComponent } from './components/mz-dashboard/mz-dashboard.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { GuardianGuard } from './guardian.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'access', component: AccessComponent },
+  { path: 'mz-dashboard', component: MzDashboardComponent, canActivate: [GuardianGuard] },
+  { path: 'sign-up', component: SignUpComponent },
   { path: 'professor', component: ProfessorPrincipalComponent, children: [
     { path: 'create', component: ProfessorCreateComponent },
     { path: 'edit/:codProfessor', component: ProfessorEditComponent },
