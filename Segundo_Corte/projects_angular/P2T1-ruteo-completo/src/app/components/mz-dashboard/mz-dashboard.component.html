@@ -1,1 +1,13 @@
-<p>mz-dashboard works!</p>
+<div>
+  <app-top-menu></app-top-menu>
+</div>
+
+
+<div>
+  <p>{{ objUserSession.email }}</p>
+  <p>{{ objUserSession.cod }}</p>
+</div>
+
+<div>
+  <a [routerLink]="['/home']" (click)="authService.exit()">Logout</a>
+</div>

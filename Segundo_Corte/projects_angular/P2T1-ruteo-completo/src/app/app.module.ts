@@ -37,7 +37,6 @@ import { ProfessorsSideMenuComponent } from './components/private/professors/pro
 import { UniversitiesSideMenuComponent } from './components/private/universities/universities-side-menu/universities-side-menu.component';
 import { UniversitiesDetailComponent } from './components/private/universities/universities-detail/universities-detail.component';
 import { UniversitiesPrincipalComponent } from './components/private/universities/universities-principal/universities-principal.component';
-import { ValidationComponent } from './components/access/validation/validation.component';
 import { AssociateUniversityWithProfessorComponent } from './components/public/associate/associate-university-with-professor/associate-university-with-professor.component';
 import { AssociateProfessorWithUniversityComponent } from './components/public/associate/associate-professor-with-university/associate-professor-with-university.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
@@ -71,7 +70,6 @@ import { HttpClientModule } from '@angular/common/http';
     UniversityEditComponent,
     UniversityPrincipalComponent,
     UniversityViewComponent,
-    ValidationComponent,
     AssociateUniversityWithProfessorComponent,
     AssociateProfessorWithUniversityComponent,
     SignUpComponent,

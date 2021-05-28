@@ -1,5 +1,5 @@
 export class Users {
-  public cod: number;
+  public cod?: number;
   public codRol: number;
   public email: string;
   public password: string;

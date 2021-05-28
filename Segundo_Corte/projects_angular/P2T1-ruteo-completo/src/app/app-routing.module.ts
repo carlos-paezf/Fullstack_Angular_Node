@@ -18,7 +18,6 @@ import { UniversityCreateComponent } from './components/public/university/univer
 import { UniversityEditComponent } from './components/public/university/university-edit/university-edit.component';
 import { UniversityViewComponent } from './components/public/university/university-view/university-view.component';
 import { UniversityAdminComponent } from './components/public/university/university-admin/university-admin.component';
-import { ValidationComponent } from './components/access/validation/validation.component';
 import { AssociateUniversityWithProfessorComponent } from './components/public/associate/associate-university-with-professor/associate-university-with-professor.component';
 import { AssociateProfessorWithUniversityComponent } from './components/public/associate/associate-professor-with-university/associate-professor-with-university.component';
 import { MzDashboardComponent } from './components/mz-dashboard/mz-dashboard.component';
@@ -28,8 +27,8 @@ import { GuardianGuard } from './guardian.guard';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'access', component: AccessComponent },
-  { path: 'mz-dashboard', component: MzDashboardComponent, canActivate: [GuardianGuard] },
   { path: 'sign-up', component: SignUpComponent },
+  { path: 'dashboard', component: MzDashboardComponent, canActivate: [GuardianGuard] },
   { path: 'professor', component: ProfessorPrincipalComponent, children: [
     { path: 'create', component: ProfessorCreateComponent },
     { path: 'edit/:codProfessor', component: ProfessorEditComponent },
@@ -66,8 +65,6 @@ const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: '**', component: NotFoundComponent }
   ]},
-
-  { path: 'validate', component: ValidationComponent},
 
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: '**', component: NotFoundComponent }

@@ -15,7 +15,7 @@ export class AccessComponent implements OnInit {
   public objUser: User;
 
   constructor(public modalService:BsModalService, private toastr:ToastrService, private router:Router) {
-    this.objUser = new User(0,'','','','','');
+    this.objUser = new User('','');
   }
 
   ngOnInit(): void {
@@ -23,6 +23,7 @@ export class AccessComponent implements OnInit {
 
   public sendInfo(form: NgForm): boolean {
     this.ToastrModal('<b>Sign In</b> sucessfully', 'Success', 1);
+    this.router.navigate(['/dashboard']);
     return true;
   }
 

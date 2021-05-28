@@ -5,7 +5,7 @@
       <div class="card shadow-lg">
         <div class="card-header">
           <div class="d-flex align-items-center">
-            <h5 class="mx-auto w-100">Sign in to Angular</h5>
+            <h5 class="mx-auto w-100">Sign In to Angular</h5>
             <h5><i class="fa fa-key text-success"></i></h5>
           </div>
         </div>
@@ -40,6 +40,7 @@
                   [ngClass]="{'is-invalid': formLogin.submitted && password.invalid}" minlength="8" maxlength="15"
                   required />
                 <!--https://es.stackoverflow.com/questions/4300/expresiones-regulares-para-contrase%C3%B1a-en-base-a-una-politica-->
+                <!--Ejemplo de contraseña AZaz11!!-->
                 <div class="invalid-feedback" *ngIf="formLogin.submitted && password.invalid">
                   <small>
                     <span class="text-danger" *ngIf="password?.errors?.required">The user's password is requires</span>
@@ -59,14 +60,18 @@
             </div>
 
             <div class="form-group mx-auto col-sm-10 my-3">
-              <!--<button class="btn btn-block btn-dark" style="border-radius: 2rem;" [routerLink]="['/validate']"
-                type="submit">Sign In</button>-->
               <button class="btn btn-block btn-danger" style="border-radius: 2rem;" type="submit">Sign In</button>
               <button class="btn btn-block btn-outline-info" style="border-radius: 2rem;"
                 [routerLink]="['/home']">Return to home</button>
             </div>
 
           </form>
+
+          <hr>
+          <div class="text-center">
+            Create an account?
+            <a [routerLink]="['/sign-up']">Sign Up</a>
+          </div>
         </div>
       </div>
 
